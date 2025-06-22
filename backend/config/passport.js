@@ -1,11 +1,20 @@
 // config/passport.js
 
-// passport, OAuth 전략들, 사용자 모델, JWT 라이브러리 불러오기
+// Passport 미들웨어 (OAuth 인증 처리용)
 const passport = require('passport')
+
+// Google OAuth 2.0 전략
 const GoogleStrategy = require('passport-google-oauth20').Strategy
+
+// GitHub OAuth 2.0 전략
 const GitHubStrategy = require('passport-github2').Strategy
+
+// User 모델 불러오기 (소셜 로그인 사용자 저장에 사용)
 const User = require('../models/User')
+
+// JWT 토큰 생성 및 검증용 라이브러리
 const jwt = require('jsonwebtoken')
+
 
 // 구글 OAuth 전략 설정
 passport.use(new GoogleStrategy(

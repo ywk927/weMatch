@@ -1,6 +1,6 @@
 // middlewares/authMiddleware.js
 
-// JWT 라이브러리 불러오기
+// JWT 토큰 생성 및 검증을 위한 라이브러리
 const jwt = require('jsonwebtoken')
 
 

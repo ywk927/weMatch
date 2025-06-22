@@ -1,6 +1,6 @@
 // controllers/user.controller.js
 
-// 사용자 모델 불러오기
+// User 모델 불러오기 (사용자 정보 조회 및 소셜 로그인 처리에 사용)
 const User = require('../models/User')
 
 

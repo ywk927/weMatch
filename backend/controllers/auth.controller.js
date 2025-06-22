@@ -1,9 +1,14 @@
 // controllers/auth.controller.js
 
-// 사용자 모델, bcrypt, jwt 라이브러리 불러오기
+// User 모델 불러오기 (사용자 정보 관리)
 const User = require('../models/User')
+
+// 비밀번호 해싱 및 검증을 위한 라이브러리
 const bcrypt = require('bcrypt')
+
+// JWT 토큰 생성 및 검증을 위한 라이브러리
 const jwt = require('jsonwebtoken')
+
 
 
 // 회원가입 핸들러
