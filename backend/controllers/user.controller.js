@@ -46,7 +46,7 @@ exports.updateMyProfile = async (req, res) => {
     await user.save()
 
     // 성공 응답 반환
-    res.status(200).json(user)
+    res.status(200).json({ message: '프로필이 수정되었습니다' })
   } catch (err) {
     // 에러 발생 시 서버 오류 반환
     console.error('updateMyProfile error:', err)

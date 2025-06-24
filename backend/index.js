@@ -1,6 +1,5 @@
 // index.js
 
-
 // 환경 변수 로드 (.env 파일에서)
 // 환경 변수 로드 (.env 파일에서)
 require('dotenv').config()
@@ -16,7 +15,6 @@ const userRouter = require('./routes/users')
 const projectRouter = require('./routes/projects')
 const applicationRouter = require('./routes/applications')
 
-const cors = require('cors')
 // Passport 전략 설정
 require('./config/passport')
 
