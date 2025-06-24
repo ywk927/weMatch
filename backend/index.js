@@ -22,6 +22,7 @@ require('./config/passport')
 const app = express()
 
 // 전역 미들웨어 등록
+app.use(cors())
 app.use(express.json()) // JSON 요청 본문 파싱
 app.use(passport.initialize()) // Passport 초기화
 
