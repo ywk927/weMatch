@@ -1,14 +1,8 @@
-import './App.css'
-import ProjectCard from './components/common/ProjectCard'
-import UserCard from './components/common/UserCard'
+// src/App.jsx
+import Router from './routes/Router'
 
 function App() {
-
-  return (
-    <>
-      <UserCard/>
-    </>
-  )
+  return <Router />
 }
 
 export default App
