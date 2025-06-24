@@ -1,12 +1,13 @@
 import './App.css'
-import ProjectCard from './components/common/ProjectCard'
-import UserCard from './components/common/UserCard'
+import LogIn from './components/modal/LogInModal'
+import SignUp from './components/modal/SignUpModal'
 
 function App() {
 
   return (
     <>
-      <UserCard/>
+      {/* <LogIn/> */}
+      <SignUp/>
     </>
   )
 }
