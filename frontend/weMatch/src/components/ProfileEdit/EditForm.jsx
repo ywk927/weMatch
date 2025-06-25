@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../lib/axiosInstance'
 import EditInput from './EditInput'
 import EditSelect from './EditSelect'
 import EditSkillsInput from './EditSkillsInput'
 import { useNavigate } from 'react-router-dom'
+import { useUserStore }  from '../../stores/useUserStore.js'
 import './EditForm.css'
 
 const EditForm = () => {
   const navigate = useNavigate()
+  const { user, setUser } = useUserStore()
+
   const [form, setForm] = useState({
     nickname: '',
     level: '',
@@ -15,19 +18,30 @@ const EditForm = () => {
   })
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    axios.get('http://localhost:3000/api/auth/me', {
-      headers: { Authorization: `Bearer ${token}` }
-    }).then(res => {
-      const { nickname, level, skills } = res.data  // 구조 분해 할당
-      // 받아온 데이터를 form으로 보내주기
+    if (user) {
       setForm({
-        nickname,
-        level,
-        skills: skills.join(', ')   // 배열을 문자열로 바꾸기
+        nickname: user.nickname || '',
+        level: user.level || '',
+        skills: (user.skills || []).join(', ')
       })
-    })
-  }, [])
+    } else {
+      // fallback으로 서버에서 user 다시 받아오기
+      axiosInstance.get('/auth/me')
+        .then(res => {
+          const { nickname, level, skills } = res.data
+          setForm({
+            nickname,
+            level,
+            skills: skills.join(', ')
+          })
+          setUser(res.data)
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    }
+  }, [user, setUser])
+
 
   // 입력창의 변화 업데이트
 
@@ -38,18 +52,15 @@ const EditForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()  // 앱 초기화 방지
-    const token = localStorage.getItem('token')
     try {
-      const res = await axios.put('http://localhost:3000/api/users/me', {
+      const res = await axiosInstance.put('/users/me', {
         nickname: form.nickname,
         level: form.level,
         skills: form.skills.split(',').map(s => s.trim()) //문자열을 배열로 바꾸기
-      }, {
-        headers: { Authorization: `Bearer ${token}` }
       })
 
       alert('프로필이 수정되었습니다!')
-      localStorage.setItem('user', JSON.stringify(res.data))
+      setUser(res.data)
       navigate('/profile')
     } catch (err) {
       console.error(err)

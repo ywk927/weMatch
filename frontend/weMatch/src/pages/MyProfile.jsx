@@ -7,9 +7,17 @@ const Profile = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('user')
-    if (storedUser) {
-      setUser(JSON.parse(storedUser))  // 문자열 → 객체로
+    const stored = localStorage.getItem('user-store')
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored)
+        const userData = parsed?.state?.user
+        if (userData) {
+          setUser(userData)
+        }
+      } catch (e) {
+        console.error('user-store 파싱 오류:', e)
+      }
     }
   }, [])
 

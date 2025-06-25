@@ -15,6 +15,7 @@ const userRouter = require('./routes/users')
 const projectRouter = require('./routes/projects')
 const applicationRouter = require('./routes/applications')
 
+const cors = require('cors')
 // Passport 전략 설정
 require('./config/passport')
 
@@ -22,6 +23,7 @@ require('./config/passport')
 const app = express()
 
 // 전역 미들웨어 등록
+app.use(cors())
 app.use(express.json()) // JSON 요청 본문 파싱
 app.use(passport.initialize()) // Passport 초기화
 
