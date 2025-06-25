@@ -30,13 +30,9 @@ router.get(
 
 // 구글 로그인 콜백 처리
 // GET /api/auth/google/callback
-router.get(
-  '/google/callback',
-  passport.authenticate('google', { session: false, failureRedirect: '/' }),
-  (req, res) => {
-    const token = req.user.token
-    res.json({ token })
-  }
+router.get('/google/callback',
+  passport.authenticate('google', { session: false }),
+  authController.socialCallback
 )
 
 // 깃허브 로그인 시작
@@ -48,12 +44,9 @@ router.get(
 
 // 깃허브 로그인 콜백 처리
 // GET /api/auth/github/callback
-router.get(
-  '/github/callback',
+router.get('/github/callback',
   passport.authenticate('github', { session: false }),
-  (req, res) => {
-    res.json(req.user)
-  }
+  authController.socialCallback
 )
 
 module.exports = router

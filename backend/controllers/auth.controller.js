@@ -9,7 +9,16 @@ const bcrypt = require('bcrypt')
 // JWT 토큰 생성 및 검증을 위한 라이브러리
 const jwt = require('jsonwebtoken')
 
+// 소셜 로그인 콜백 리다이렉트 처리
+exports.socialCallback = (req, res) => {
+  const { token } = req.user
+  if (!token) {
+    return res.redirect('http://localhost:5173/login?error=oauth')
+  }
 
+  // ✅ 프론트로 토큰 전달
+  res.redirect(`http://localhost:5173/oauth/callback?token=${token}`)
+}
 
 // 회원가입 핸들러
 exports.signup = async (req, res) => {
