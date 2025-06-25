@@ -23,7 +23,9 @@ function AppLayout() {
   return (
     <>
       <TopNav />
+      <div className="app-wrapper">
       <Router location={state?.background || location} />
+      </div>
 
       {/* 👇 모달 라우트는 항상 추가 렌더링 */}
       {state?.background && (
