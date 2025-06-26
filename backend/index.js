@@ -8,6 +8,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const passport = require('passport')
+const path = require('path')
 
 // 라우터 불러오기
 const authRouter = require('./routes/auth')
@@ -26,6 +27,9 @@ const app = express()
 app.use(cors())
 app.use(express.json()) // JSON 요청 본문 파싱
 app.use(passport.initialize()) // Passport 초기화
+
+// uploads 폴더를 static으로 서빙
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
 
 // 라우터 등록
 app.use('/api/auth', authRouter)

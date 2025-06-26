@@ -16,14 +16,14 @@ exports.socialCallback = (req, res) => {
     return res.redirect('http://localhost:5173/login?error=oauth')
   }
 
-  // ✅ 프론트로 토큰 전달
+  // 프론트로 토큰 전달
   res.redirect(`http://localhost:5173/oauth/callback?token=${token}`)
 }
 
 // 회원가입 핸들러
 exports.signup = async (req, res) => {
   // 요청 본문에서 회원가입 정보 추출
-  const { email, password, nickname, skills, level } = req.body
+  const { email, password, nickname, skills, position, image, description } = req.body
 
   try {
     // 이미 존재하는 이메일인지 확인
@@ -38,8 +38,10 @@ exports.signup = async (req, res) => {
       email,
       password: hashedPassword,
       nickname,
-      skills: skills || [],  // 선택적으로 skills 저장
-      level: level || ''     // 선택적으로 level 저장
+      skills: skills || [],  // [{ name, level }] 구조로 저장
+      position: position || '', // position 필수
+      image: image || '',
+      description: description || ''
     })
 
     // DB에 사용자 저장
@@ -93,7 +95,7 @@ exports.login = async (req, res) => {
 exports.getMe = async (req, res) => {
   try {
     // 토큰에서 추출된 userId로 사용자 조회 (비밀번호 제외)
-    const user = await User.findById(req.userId).select('_id email nickname skills level')
+    const user = await User.findById(req.userId).select('_id email nickname skills position image description')
     if (!user) return res.status(404).json({ message: '사용자를 찾을 수 없습니다' })
 
     // 사용자 정보 반환
@@ -102,7 +104,9 @@ exports.getMe = async (req, res) => {
       email: user.email,
       nickname: user.nickname,
       skills: user.skills,
-      level: user.level
+      position: user.position,
+      image: user.image,
+      description: user.description
     })
   } catch (err) {
     // 서버 오류 처리

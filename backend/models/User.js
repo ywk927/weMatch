@@ -30,16 +30,32 @@ const userSchema = new mongoose.Schema({
     default: ''
   },
 
-  // 기술 스택: 문자열 배열로 저장, 기본값은 빈 배열
-  skills: {
-    type: [String],
-    default: []
-  },
+  // 기술 스택: 각 기술마다 이름과 숙련도(초급, 중급, 고급)를 저장
+  skills: [
+    {
+      name: { type: String, required: true },
+      level: { type: String, enum: ['초급', '중급', '고급'], required: true }
+    }
+  ],
 
-  // 사용자의 숙련도 또는 레벨 (예: 초급, 중급 등), 기본값은 빈 문자열
-  level: {
+  // 포지션: 웹 프론트엔드, 웹 백엔드, 모바일, 매니저, 디자이너 중 하나 선택
+  position: {
     type: String,
-    default: ''
+    enum: [
+      '웹 프론트엔드',
+      '웹 백엔드',
+      '모바일',
+      '풀스택',
+      '디자이너',
+      '기획자/PM',
+      'QA',
+      'DevOps/인프라',
+      '데이터 엔지니어',
+      '데이터 분석가',
+      '마케터',
+      '작가/콘텐츠 에디터'
+    ],
+    required: true
   },
 
   // 가입 방식(local, google, github 중 하나)
@@ -47,7 +63,19 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ['local', 'google', 'github'], // 지정된 값만 허용
     default: 'local' // 기본값은 일반 회원가입(local)
-  }
+  },
+
+  // 프로필 이미지 URL
+  image: {
+    type: String,
+    default: ''
+  },
+
+  // 자기소개
+  description: {
+    type: String,
+    default: ''
+  },
 })
 
 // User 모델로 내보내기
