@@ -1,0 +1,45 @@
+/* MiniUserCard.css */
+
+.mini-user-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 0.75rem;
+  font-family: sans-serif;
+}
+
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.user-nickname {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #58287F; /* 진보라 강조 */
+}
+
+.user-level {
+  font-size: 0.8rem;
+  background-color: #F5EDCE; /* 아이보리 배경 */
+  padding: 2px 6px;
+  border-radius: 5px;
+  color: #58287F; /* 진보라 텍스트 */
+}
+
+.user-skills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.skill-tag {
+  font-size: 0.75rem;
+  background-color: #89C4E1;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
