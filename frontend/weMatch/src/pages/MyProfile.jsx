@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import MyInfoCard from '../components/Profile/MyInfoCard'
+import MyInfoCard from '../components/profile/MyInfoCard'
 import { useNavigate } from 'react-router-dom'
 
 const Profile = () => {

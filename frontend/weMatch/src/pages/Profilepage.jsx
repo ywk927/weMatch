@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import MyInfoCard from '../components/Profile/MyInfoCard'
+import MyInfoCard from '../components/profile/MyInfoCard'
 
 const ProfilePage = () => {
   const { id } = useParams()
