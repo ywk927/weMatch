@@ -49,7 +49,7 @@ exports.getApplicationsByProject = async (req, res) => {
 
   // 신청 목록 조회 및 사용자 정보 포함
   const applications = await Application.find({ project: projectId })
-    .populate('user', 'nickname email skills level')
+    .populate('user', 'nickname email skills position image description')
     .sort({ createdAt: -1 })
 
   res.json(applications)

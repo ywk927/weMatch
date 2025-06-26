@@ -8,7 +8,7 @@ const User = require('../models/User')
 exports.getUserById = async (req, res) => {
   try {
     // URL 파라미터로 받은 사용자 ID로 사용자 조회 (닉네임, 기술스택, 레벨만 선택)
-    const user = await User.findById(req.params.id).select('nickname skills level')
+    const user = await User.findById(req.params.id).select('nickname skills position image description')
 
     // 사용자가 존재하지 않을 경우 404 반환
     if (!user) return res.status(404).json({ message: '사용자를 찾을 수 없습니다' })
@@ -17,7 +17,9 @@ exports.getUserById = async (req, res) => {
     res.json({
       nickname: user.nickname,
       skills: user.skills,
-      level: user.level
+      position: user.position,
+      image: user.image,
+      description: user.description
     })
   } catch (err) {
     // 에러 발생 시 서버 오류 반환
@@ -30,7 +32,7 @@ exports.getUserById = async (req, res) => {
 // 로그인된 사용자의 프로필 수정
 exports.updateMyProfile = async (req, res) => {
   // 요청 본문에서 수정할 필드 추출
-  const { nickname, skills, level } = req.body
+  const { nickname, skills, position, image, description } = req.body
 
   try {
     // JWT에서 추출한 userId로 사용자 조회
@@ -40,7 +42,9 @@ exports.updateMyProfile = async (req, res) => {
     // 각각의 필드가 전달된 경우에만 값 수정
     if (nickname !== undefined) user.nickname = nickname
     if (skills !== undefined) user.skills = skills
-    if (level !== undefined) user.level = level
+    if (position !== undefined) user.position = position
+    if (image !== undefined) user.image = image
+    if (description !== undefined) user.description = description
 
     // 변경사항 저장
     await user.save()
@@ -50,6 +54,17 @@ exports.updateMyProfile = async (req, res) => {
   } catch (err) {
     // 에러 발생 시 서버 오류 반환
     console.error('updateMyProfile error:', err)
+    res.status(500).json({ message: '서버 오류' })
+  }
+}
+
+// 전체 유저 목록 조회
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find().select('nickname email skills position image description')
+    res.json(users)
+  } catch (err) {
+    console.error('getAllUsers error:', err)
     res.status(500).json({ message: '서버 오류' })
   }
 }

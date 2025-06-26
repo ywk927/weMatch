@@ -38,9 +38,11 @@ passport.use(new GoogleStrategy(
           email,
           nickname,
           password: '',       // 소셜 로그인 유저는 비밀번호를 저장하지 않음
-          skills: [],
-          level: '',
-          provider: 'google'  // 소셜 로그인 제공자 정보 저장
+          skills: [], // [{ name: '', level: '' }] 구조의 빈 배열
+          position: '', // 최초 생성 시 포지션은 비워둠
+          provider: 'google',  // 소셜 로그인 제공자 정보 저장
+          image: '', // 프로필 이미지
+          description: '' // 자기소개
         })
       }
 
@@ -81,7 +83,11 @@ passport.use(new GitHubStrategy(
           email,
           nickname,
           password: '',       // 비밀번호 없음
-          provider: 'github'  // 제공자 정보 저장
+          skills: [], // [{ name: '', level: '' }] 구조의 빈 배열
+          position: '', // 최초 생성 시 포지션은 비워둠
+          provider: 'github',  // 제공자 정보 저장
+          image: '', // 프로필 이미지
+          description: '' // 자기소개
         })
       }
 
