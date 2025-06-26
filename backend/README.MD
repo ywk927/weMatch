@@ -85,11 +85,14 @@ const token = req.user.token
 res.json({ token })
 ```
 - 원래는 이런 방식을 사용 했음
+
+
+
 ```
 
 ---
 
-## 📝 최근 주요 변경 이력
+## 최근 주요 변경 이력
 
 - User 모델 구조 개선 (skills: 문자열 배열 → 객체 배열, position/이미지/자기소개 필드 추가)
 - 회원가입/프로필 수정 등 주요 API에 express-validator로 입력값 검증 추가
@@ -99,7 +102,7 @@ res.json({ token })
 
 ---
 
-## 📦 User 모델 구조 예시
+## User 모델 구조 예시
 
 ```json
 {
@@ -119,7 +122,7 @@ res.json({ token })
 
 ---
 
-## 🧪 더미 데이터 삽입 스크립트 사용법
+## 더미 데이터 삽입 스크립트 사용법
 
 1. 환경변수(.env)에서 MONGODB_URI가 올바르게 설정되어 있는지 확인
 2. 아래 명령어 실행
@@ -133,7 +136,7 @@ node insertDummyData.js
 
 ---
 
-## 🖼️ 이미지 업로드 및 보안
+## 이미지 업로드 및 보안
 
 - /api/users/upload 엔드포인트로 이미지 업로드
 - jpg, jpeg, png, gif, webp만 허용, 최대 2MB
@@ -141,7 +144,7 @@ node insertDummyData.js
 
 ---
 
-## ✅ API 입력값 검증
+## API 입력값 검증
 
 - 회원가입/프로필 수정 등 주요 API에 express-validator 적용
 - skills, position, image 등 필드별 유효성 체크
