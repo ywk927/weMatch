@@ -7,6 +7,7 @@ import ProfilePage from '../pages/ProfilePage'
 import ProfileEdit from '../pages/ProfileEdit'
 import ProjectPage from '../pages/ProjectPage'
 import ProjectDetail from '../pages/ProjectDetail'
+import ProjectCreate from '../pages/ProjectCreate'
 import ProjectEdit from '../pages/ProjectEdit'
 import NotFound from '../pages/NotFound'
 import OAuthCallback from "../pages/OAuthCallback"
@@ -38,6 +39,14 @@ const Router = ({ location }) => {
           element={
             <RequireAuth>
               <ProfileEdit />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/project/create"
+          element={
+            <RequireAuth>
+              <ProjectCreate />
             </RequireAuth>
           }
         />
