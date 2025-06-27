@@ -4,7 +4,7 @@ import EditInput from './EditInput'
 import EditSelect from './EditSelect'
 import EditSkillsInput from './EditSkillsInput'
 import { useNavigate } from 'react-router-dom'
-import { useUserStore }  from '../../stores/useUserStore.js'
+import { useUserStore } from '../../stores/useUserStore.js'
 import './EditForm.css'
 
 const EditForm = () => {
@@ -14,56 +14,59 @@ const EditForm = () => {
   const [form, setForm] = useState({
     nickname: '',
     level: '',
-    skills: ''
+    skills: [{ name: '' }]
   })
 
   useEffect(() => {
-    if (user) {
+    const initializeForm = (u) => {
       setForm({
-        nickname: user.nickname || '',
-        level: user.level || '',
-        skills: (user.skills || []).join(', ')
+        nickname: u.nickname || '',
+        level: u.skills?.[0]?.level || '',  // ✅ skill에서 level 추출
+        skills: (u.skills || []).map(skill => ({ name: skill.name }))
       })
+    }
+
+    if (user) {
+      initializeForm(user)
     } else {
-      // fallback으로 서버에서 user 다시 받아오기
       axiosInstance.get('/auth/me')
         .then(res => {
-          const { nickname, level, skills } = res.data
-          setForm({
-            nickname,
-            level,
-            skills: skills.join(', ')
-          })
           setUser(res.data)
+          initializeForm(res.data)
         })
         .catch(err => {
-          console.error(err)
+          console.error('유저 정보 로딩 실패:', err)
         })
     }
   }, [user, setUser])
 
-
-  // 입력창의 변화 업데이트
-
   const handleChange = (e) => {
-    const { name, value } = e.target    // name은 key 값에 해당함 (ex. nickname)
-    setForm(prev => ({ ...prev, [name]: value }))   // 바뀐 값을 바꿔라
+    const { name, value } = e.target
+    setForm(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleSkillsChange = (newSkills) => {
+    setForm(prev => ({ ...prev, skills: newSkills }))
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault()  // 앱 초기화 방지
+    e.preventDefault()
     try {
-      const res = await axiosInstance.put('/users/me', {
+      const payload = {
         nickname: form.nickname,
         level: form.level,
-        skills: form.skills.split(',').map(s => s.trim()) //문자열을 배열로 바꾸기
-      })
+        skills: form.skills.map(s => ({
+          name: s.name,
+          level: form.level // ✅ 모든 기술에 동일한 숙련도 적용
+        }))
+      }
 
+      const res = await axiosInstance.put('/users/me', payload)
       alert('프로필이 수정되었습니다!')
       setUser(res.data)
       navigate('/profile')
     } catch (err) {
-      console.error(err)
+      console.error('프로필 수정 실패:', err)
       alert('수정 실패')
     }
   }
@@ -72,7 +75,7 @@ const EditForm = () => {
     <form onSubmit={handleSubmit} className='edit-form'>
       <EditInput label="닉네임" name="nickname" value={form.nickname} onChange={handleChange} />
       <EditSelect label="숙련도" name="level" value={form.level} onChange={handleChange} />
-      <EditSkillsInput label="기술 스택" name="skills" value={form.skills} onChange={handleChange} />
+      <EditSkillsInput label="기술 스택" value={form.skills} onChange={handleSkillsChange} />
       <button type="submit">저장</button>
     </form>
   )
