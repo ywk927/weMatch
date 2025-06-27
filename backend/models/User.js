@@ -33,8 +33,8 @@ const userSchema = new mongoose.Schema({
   // 기술 스택: 각 기술마다 이름과 숙련도(초급, 중급, 고급)를 저장
   skills: [
     {
-      name: { type: String, required: true },
-      level: { type: String, enum: ['초급', '중급', '고급'], required: true }
+      name: { type: String },
+      level: { type: String, enum: ['초급', '중급', '고급'] }
     }
   ],
 
@@ -42,6 +42,7 @@ const userSchema = new mongoose.Schema({
   position: {
     type: String,
     enum: [
+      '', // 빈 문자열도 허용
       '웹 프론트엔드',
       '웹 백엔드',
       '모바일',
@@ -55,7 +56,7 @@ const userSchema = new mongoose.Schema({
       '마케터',
       '작가/콘텐츠 에디터'
     ],
-    required: true
+    default: ''
   },
 
   // 가입 방식(local, google, github 중 하나)
