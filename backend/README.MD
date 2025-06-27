@@ -79,16 +79,66 @@ Node.js는 이벤트 기반으로 동작
 - 다음 작업을 기다리지 않고 넘김
 - 다른 작업을 병렬적으로 수행 가능
 
-### oath 모델 관련 문제
-```
-const token = req.user.token
-res.json({ token })
-```
-- 원래는 이런 방식을 사용 했음
+---
 
+Node.js 프로젝트 시작
 
+### 1. Node.js 설치 및 개발 환경 구축
+- Node.js와 npm을 공식 홈페이지에서 설치
+- VSCode 등 개발 툴 세팅
+- `node -v`, `npm -v`로 버전 확인
 
+### 2. 첫 번째 Node.js 코드 실행
+- JS 파일을 만들어서 `console.log('Hello Node!')` 출력
+- 터미널에서 `node 파일명.js`로 실행
+- 브라우저가 아니라 터미널에서 JS를 실행할 수 있음
+- 프로젝트를 편하게 진행하기 위해서 npm run dev로 JS를 실행할 수 있게 설정해둠
+
+### 3. 모듈과 패키지
+- npm으로 패키지 설치(`npm install 모듈명`), 삭제(`npm uninstall 모듈명`)
+- package.json 파일이 프로젝트의 정보를 담고 있고, 의존성 관리에 중요함
+- 기본적으로 npm install로 새로운 패키지를 저장하면 자동으로 package.json이 업데이트 됨
+
+### 4. 간단한 웹 서버 만들기
+- http 모듈로 직접 서버를 만들어봄
+- 포트 개념, 서버 실행/종료 방법 익힘
+- 코드 예시:
 ```
+const http = require('http');
+const server = http.createServer((req, res) => {
+  res.end('Hello World!');
+});
+server.listen(3000);
+```
+
+### 5. Express 프레임워크 도입
+- http 모듈만으로는 라우팅, 파라미터 처리 등이 불편함
+- express를 설치(`npm install express`)해서 사용
+- 라우팅, 미들웨어, body-parser 등 기본 개념 익힘
+- 코드 예시:
+```
+const express = require('express');
+const app = express();
+app.get('/', (req, res) => res.send('Express!'));
+app.listen(3000);
+```
+
+### 6. REST API 기초
+- GET, POST, PUT, DELETE 메서드 실습
+- Postman으로 직접 API 요청 테스트
+- RESTful하게 라우팅을 설계하는 법을 익힘
+
+### 7. 데이터 저장
+- 처음에는 배열 등 메모리로 데이터 임시 저장
+- fs 모듈로 파일에 데이터 저장/불러오기 실습
+- MongoDB, Mongoose로 DB 연동 시도
+- MongoDB에 연결해서 local이 아닌 서버 DB를 사용해볼 수 있음
+
+### 8. 비동기 프로그래밍 실습
+- setTimeout, setInterval로 비동기 동작 실습
+- 콜백 함수, Promise, async/await로 비동기 처리 방식 비교
+- 콜백 지옥을 경험하고, Promise/async-await의 필요성을 느낌
+
 
 ---
 

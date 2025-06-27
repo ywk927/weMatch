@@ -2,6 +2,7 @@
 
 // Project 모델 불러오기 (프로젝트 생성, 조회, 수정 등에 사용)
 const Project = require('../models/Project')
+const Application = require('../models/Application')
 
 
 
@@ -37,7 +38,14 @@ exports.getAllProjects = async (req, res) => {
 exports.getProjectById = async (req, res) => {
   const project = await Project.findById(req.params.id).populate('creator', 'nickname')
   if (!project) return res.status(404).json({ message: 'Not found' })
-  res.json(project)
+  // 지원자 수와 합격자 수 계산
+  const applicantCount = await Application.countDocuments({ project: project._id })
+  const acceptedCount = await Application.countDocuments({ project: project._id, status: 'accepted' })
+  res.json({
+    ...project.toObject(),
+    applicantCount,
+    acceptedCount
+  })
 }
 
 
