@@ -5,7 +5,6 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Router from './routes/Router'
 import TopNav from './components/nav/TopNav'
 import LogInModal from './components/modal/LogInModal'
-import SignUpModal from './components/modal/SignUpModal'
 
 function App() {
   return (
@@ -31,7 +30,6 @@ function AppLayout() {
       {state?.background && (
         <Routes>
           <Route path="/login" element={<LogInModal />} />
-          <Route path="/signup" element={<SignUpModal />} />
         </Routes>
       )}
     </>

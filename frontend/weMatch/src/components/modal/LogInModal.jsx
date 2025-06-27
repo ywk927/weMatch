@@ -109,18 +109,7 @@ return (
 
         <div className="modal-footer">
           <span>계정이 없으신가요?</span>
-          <a
-            onClick={() =>
-              navigate('/signup', {
-                state: {
-                  background: location.state?.background || location,
-                },
-                replace: true,
-              })
-            }
-          >
-            회원가입
-          </a>
+          <a onClick={() => navigate('/signup')}>회원가입</a>
         </div>
 
         <div className="divider"><span>OR</span></div>

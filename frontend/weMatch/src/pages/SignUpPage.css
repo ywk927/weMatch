@@ -1,0 +1,262 @@
+/* signup page 전체 영역 */
+.signup-container {
+  max-width: 500px;
+  margin: 1rem auto 8rem;
+  padding: 1rem 2rem;
+  background: #ffffff;
+  border-radius: 16px;
+  min-height: 100vh;
+  font-family: 'Pretendard', sans-serif;
+}
+
+/* 헤더 영역 */
+.signup-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.signup-header img {
+  height: 100px;
+  margin-bottom: 0.5rem;
+}
+
+.signup-header h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #000;
+}
+
+/* 폼 영역 */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-input {
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  background-color: #fff7e6;
+  color: #58287F;
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+.signup-input::placeholder {
+  color: #a479c2;
+}
+
+/* 이미지 영역 */
+.signup-input[type="file"] {
+  background-color: #fff;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  color: #58287F;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+}
+
+.signup-input[type="file"]::before {
+  content: '이미지 선택';
+}
+
+.signup-input[type="file"]::after {
+  content: '이미지 선택';
+}
+
+.signup-button {
+  padding: 0.75rem;
+  background-color: #58287F;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  margin-top: 0;
+  cursor: pointer;
+}
+
+.signup-button:hover {
+  background-color: #4a1f6f;
+}
+
+/* 로그인 유도 footer */
+.signup-footer {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.signup-footer span {
+  color: #000;
+  margin-right: 0.25rem;
+}
+
+.signup-footer a {
+  color: #58287F;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 구분선 */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.divider span {
+  margin: 0 0.75rem;
+  color: #666;
+}
+
+/* OAuth 버튼 */
+.oauth-button {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  margin-bottom: 0.75rem;
+}
+
+.oauth-button img {
+  height: 20px;
+}
+
+/* 기술 추가 입력 필드 */
+.skill-input-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* 좌측 입력 필드 묶음 */
+.skill-input-left {
+  display: flex;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.skill-input-left .signup-input {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 추가 버튼은 우측 고정 */
+.skill-add-button {
+  padding: 0.75rem 1rem;
+  background-color: #fff7e6;
+  color: #58287F;
+  border: 1px solid #d6b8ff;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  height: 100%;
+  align-self: stretch;
+
+}
+
+.skill-add-button:hover {
+  background-color: #fceac8;
+}
+
+.skill-list {
+  list-style: none;
+  padding-left: 1rem;
+  font-size: 0.9rem;
+  color: #58287F;
+}
+
+.skill-list li {
+  margin-bottom: 0;
+  padding: 0;
+}
+
+/* 좌우 구성 */
+.signup-2col {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: flex-start;
+}
+
+/* 좌측 이미지 영역 */
+.profile-upload-box {
+  width: 160px;
+  height: 160px;
+  background-color: #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.profile-upload-label {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+  text-align: center;
+}
+
+.profile-upload-label input[type="file"] {
+  display: none;
+}
+
+/* 이미지 미리보기 */
+.profile-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 우측 필드 */
+.right-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* hover 시 어두운 오버레이 효과 */
+.profile-upload-label:hover::after {
+  content: '이미지 변경';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+

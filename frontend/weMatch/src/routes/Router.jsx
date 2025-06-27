@@ -2,6 +2,7 @@
 
 import { Routes, Route } from 'react-router-dom'
 import HomePage from '../pages/HomePage'
+import SignUpPage from '../pages/SignUpPage'
 import MyProfile from '../pages/MyProfile'
 import ProfilePage from '../pages/ProfilePage'
 import ProfileEdit from '../pages/ProfileEdit'
@@ -19,6 +20,7 @@ const Router = ({ location }) => {
       <Routes location={location}>
         {/* 공개 라우트 */}
         <Route path="/" element={<HomePage />} />
+        <Route path="/signup" element={<SignUpPage />} />
         <Route path="/profile/users/:id" element={<ProfilePage />} />
         <Route path="/project" element={<ProjectPage />} />
         <Route path="/project/:id" element={<ProjectDetail />} />
