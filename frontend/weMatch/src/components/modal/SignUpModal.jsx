@@ -11,7 +11,14 @@ import googleLogo from '../../assets/icons/google.png'
 import githubLogo from '../../assets/icons/github.png'
 
 export default function SignUpModal() {
-  const [form, setForm] = useState({ email: '', password: '', nickname: '' })
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+    nickname: '',
+    position: '',
+    provider: 'local',
+    skills: [{ name: '', level: '' }]  // ✅ 기본값 1개
+  })
   const { setToken, setUser } = useUserStore()
   const navigate = useNavigate()
   const location = useLocation()
@@ -22,6 +29,7 @@ export default function SignUpModal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    console.log('회원가입 폼 데이터:', form)
     try {
       // 1. 회원가입 /auth/signup으로 이메일+비밀번호+닉네임 전송
       const res = await axiosInstance.post('/auth/signup', form)
@@ -103,6 +111,56 @@ export default function SignUpModal() {
           value={form.password}
           onChange={handleChange}
         />
+         <select
+            className="modal-input"
+            name="position"
+            value={form.position}
+            onChange={handleChange}
+            required
+          >
+            <option value="">포지션을 선택하세요</option>
+            <option value="웹 프론트엔드">웹 프론트엔드</option>
+            <option value="웹 백엔드">웹 백엔드</option>
+            <option value="모바일">모바일</option>
+            <option value="풀스택">풀스택</option>
+            <option value="디자이너">디자이너</option>
+            <option value="기획자/PM">기획자/PM</option>
+            <option value="QA">QA</option>
+            <option value="DevOps/인프라">DevOps/인프라</option>
+            <option value="데이터 엔지니어">데이터 엔지니어</option>
+            <option value="데이터 분석가">데이터 분석가</option>
+            <option value="마케터">마케터</option>
+            <option value="작가/콘텐츠 에디터">작가/콘텐츠 에디터</option>
+          </select>
+         <div className="skill-section">
+          <input
+            className="modal-input"
+            type="text"
+            placeholder="기술 스택 (예: JavaScript)"
+            value={form.skills[0].name}
+            onChange={(e) => {
+              const newSkills = [...form.skills]
+              newSkills[0].name = e.target.value
+              setForm({ ...form, skills: newSkills })
+            }}
+            required
+          />
+          <select
+            className="modal-input"
+            value={form.skills[0].level}
+            onChange={(e) => {
+              const newSkills = [...form.skills]
+              newSkills[0].level = e.target.value
+              setForm({ ...form, skills: newSkills })
+            }}
+            required
+          >
+            <option value="">숙련도 선택</option>
+            <option value="초급">초급</option>
+            <option value="중급">중급</option>
+            <option value="고급">고급</option>
+          </select>
+        </div>
         <button type="submit" className="modal-button">회원가입</button>
       </form>
 

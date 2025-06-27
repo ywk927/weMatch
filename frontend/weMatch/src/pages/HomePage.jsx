@@ -117,7 +117,7 @@ const HomePage = () => {
                     <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                       {user.skills.map((skill, idx) => (
                         <span
-                          key={idx}
+                          key={skill._id || idx}
                           style={{
                             fontSize: '0.7rem',
                             backgroundColor: '#89C4E1',
@@ -126,7 +126,7 @@ const HomePage = () => {
                             borderRadius: '4px',
                           }}
                         >
-                          #{skill}
+                          #{skill.name}
                         </span>
                       ))}
                     </div>
