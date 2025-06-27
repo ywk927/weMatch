@@ -2,18 +2,20 @@
 const MyInfoCard = ({ user }) => {
   if (!user) return <p>로딩 중...</p>
 
-  const { email, nickname, level, skills = [] } = user
+  const { email, nickname, skills = [] } = user
 
   return (
     <div style={cardStyle}>
       <h2>{nickname}</h2>
       <p><strong>이메일:</strong> {email}</p>
-      <p><strong>숙련도:</strong> {level}</p>
+      <p><strong>숙련도:</strong> {skills[0].level}</p>
       <div style={{ marginTop: '10px' }}>
         <strong>기술 스택:</strong>
         <div style={{ display: 'flex', gap: '8px', marginTop: '5px', flexWrap: 'wrap' }}>
           {skills.map((skill, idx) => (
-            <span key={idx} style={badgeStyle}>{skill}</span>
+            <span key={skill._id || idx} style={badgeStyle}>
+              {skill.name}
+            </span>
           ))}
         </div>
       </div>
