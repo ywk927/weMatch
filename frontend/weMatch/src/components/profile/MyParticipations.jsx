@@ -1,3 +1,5 @@
+// src/components/profile/MyParticipations.jsx
+
 import { useEffect, useState } from 'react'
 import axiosInstance from '../../lib/axiosInstance'
 import MiniProjectCard from '../common/MiniProjectCard'
@@ -6,13 +8,14 @@ const MyParticipations = () => {
   const [participations, setParticipations] = useState([])
 
   useEffect(() => {
-    axiosInstance.get('/users/me/participations')
-      .then(async res => {
+    const fetchParticipations = async () => {
+      try {
+        const res = await axiosInstance.get('/users/me/participations') // [{ projectId }]
         const detailed = await Promise.all(
           res.data.map(async (p) => {
             try {
               const res = await axiosInstance.get(`/projects/${p.projectId}`)
-              return res.data
+              return res.data.project // ✅ 여기
             } catch (err) {
               console.error(`❌ 프로젝트 ${p.projectId} 정보 불러오기 실패`, err)
               return null
@@ -20,8 +23,12 @@ const MyParticipations = () => {
           })
         )
         setParticipations(detailed.filter(Boolean))
-      })
-      .catch(err => console.error('❌ 참여한 프로젝트 조회 실패:', err))
+      } catch (err) {
+        console.error('❌ 참여한 프로젝트 조회 실패:', err)
+      }
+    }
+
+    fetchParticipations()
   }, [])
 
   return (

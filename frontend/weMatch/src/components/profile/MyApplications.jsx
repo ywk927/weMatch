@@ -21,10 +21,12 @@ const MyApplications = () => {
     const fetchApplications = async () => {
       try {
         const res = await axiosInstance.get('/users/me/applications') // [{ projectId, title, status }]
+
         const detailed = await Promise.all(
           res.data.map(async (app) => {
             try {
               const projectRes = await axiosInstance.get(`/projects/${app.projectId}`)
+              // console.log('✅ 프로젝트 상세 정보:', projectRes.data)
               return { project: projectRes.data, status: app.status }
             } catch (err) {
               console.error(`❌ 프로젝트 ${app.projectId} 정보 불러오기 실패`, err)
@@ -32,6 +34,7 @@ const MyApplications = () => {
             }
           })
         )
+
         setApplications(detailed.filter(Boolean))
       } catch (err) {
         console.error('❌ 신청한 프로젝트 목록 조회 실패:', err)
@@ -47,9 +50,9 @@ const MyApplications = () => {
       {applications.length === 0 ? (
         <p>신청한 프로젝트가 없습니다.</p>
       ) : (
-        applications.map(({ project, status }) => (
-          <div key={project._id} style={{ marginBottom: '20px' }}>
-            <MiniProjectCard project={project} />
+        applications.map(({ project, status }, idx) => (
+          <div key={`${project._id}-${status}-${idx}`} style={{ marginBottom: '20px' }}>
+            <MiniProjectCard project={project.project} />
             <div style={{
               ...statusStyle[status],
               padding: '6px 12px',

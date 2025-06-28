@@ -56,6 +56,17 @@ router.get('/:id', userController.getUserById)
 router.put(
   '/me',
   authMiddleware,
+  upload.single('image'),  // ✅ FormData 처리용 multer 등록
+  (req, res, next) => {    // 2. skills 파싱 미들웨어
+      if (req.body.skills) {
+        try {
+          req.body.skills = JSON.parse(req.body.skills)
+        } catch (e) {
+          return res.status(400).json({ message: 'skills 형식이 올바르지 않습니다 (JSON 형식이어야 함).' })
+        }
+      }
+      next()
+    },
   [
     body('email').optional().isEmail().withMessage('이메일 형식이 올바르지 않습니다.'),
     body('password').optional().isLength({ min: 6 }).withMessage('비밀번호는 6자 이상이어야 합니다.'),

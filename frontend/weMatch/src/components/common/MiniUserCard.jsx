@@ -8,10 +8,9 @@ const MiniUserCard = ({ user }) => {
   const navigate = useNavigate()
 
   if (!user) return null
-
+  
   const { _id, nickname, skills, position, image } = user
-  const imageUrl = image ? `http://localhost:3000/${image}` : userDefault
-
+  const imageUrl = image ? `http://localhost:3000${image}` : userDefault
   const handleClick = () => {
     navigate(`/profile/${_id}`)
   }
