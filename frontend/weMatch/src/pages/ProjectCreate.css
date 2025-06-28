@@ -1,0 +1,136 @@
+/* ProjectCreate.css */
+
+.project-page {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0;
+  height: 1080px;
+  padding-top: 0;
+}
+
+.project-page .project-header {
+  width: 100vw;
+  height: 220px;
+  background: #FDF1C4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 28rem;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  margin-top: -1rem;
+}
+
+.project-page .project-header-text h2 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 4rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.project-page .project-header-text p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #444;
+}
+
+.project-page .project-header-logo {
+  height: 250px;
+  margin-right: 2rem;
+  margin-top: 3rem;
+}
+
+.project-form-wrapper {
+  background: #fdfcf5;
+  padding: 2rem;
+  width: 720px;
+  height: 720px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0 auto;
+}
+
+label {
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.input {
+  background: #c0e6fa;
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  width: 90%;
+  margin-bottom: 1rem;
+}
+
+.textarea {
+  resize: none;
+  min-height: 140px;
+}
+
+.recruit-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.recruit-input {
+  width: 70px;
+  text-align: center;
+}
+
+.recruit-wrapper span {
+  font-size: 1.25rem;
+  padding: 0.3rem 0.6rem;
+  background: #c0e6fa;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  background: #58287F;
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.tag span {
+  cursor: pointer;
+  color: #fff;
+}
+
+.submit-button {
+  margin-top: 5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #58287F;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 15%;
+  transition: background-color 0.2s ease;
+  align-self: center;
+}
+
+.submit-button:hover {
+  background-color: #452062;
+}

@@ -1,40 +1,48 @@
 // src/components/common/ProjectCard.jsx
 
+import { useNavigate } from 'react-router-dom'
 import './ProjectCard.css'
 
 const ProjectCard = ({ project }) => {
-  const { title, description, skills, recruitCount, author, updatedAt } = project
+  const navigate = useNavigate()
+  const {
+    _id,
+    title,
+    description,
+    skills = [],
+    recruitCount = 0,
+    creator
+  } = project
+
+  const acceptedCount = project.acceptedCount || 0
+
+  const handleClick = () => {
+    navigate(`/project/${_id}`)
+  }
 
   return (
-    <div className="project-card">
-      {/* 상단 정보 */}
+    <div className="project-card" onClick={handleClick}>
       <div className="project-card-header">
-        <div className="project-card-title">{title}</div>
-        <div className="project-card-meta">
-          <span className="project-author">{author?.nickname || '익명'}</span>
-          <span className="dot">·</span>
-          <span className="project-date">{updatedAt || '방금 전'}</span>
+        <div>
+          <div className="project-card-title">{title}</div>
+          <div className="project-card-meta">{creator?.nickname || '익명'}</div>
+        </div>
+        <div className="project-card-recruit-right">
+          <div className="project-card-recruit-count">
+            <span className="red">{recruitCount}</span> 🙋‍♂️
+          </div>
         </div>
       </div>
-
-      {/* 기술스택 + 모집 */}
-      <div className="project-meta-area">
-        <div className="project-skills">
-          {skills?.slice(0, 3).map((skill, idx) => (
-            <span key={idx} className="skill-badge">#{skill}</span>
-          ))}
-        </div>
-        <div className="project-recruit">모집: {recruitCount || 0}명</div>
-      </div>
-
-      {/* 설명 */}
-      <div className="project-description">
+    
+      <div className="project-description-box">
         {description?.length > 100 ? description.slice(0, 100) + '...' : description}
       </div>
-
-      {/* 하단 버튼 */}
-      <div className="project-card-footer">
-        <button className="project-detail-btn">더보기</button>
+    
+      <div className="project-stack-label">🌱 필수 스택</div>
+      <div className="project-skills">
+        {skills?.map((skill, idx) => (
+          <span key={idx} className="skill-badge">#{skill}</span>
+        ))}
       </div>
     </div>
   )

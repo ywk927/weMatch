@@ -67,7 +67,7 @@ const TopNav = () => {
         ) : (
           <>
             <button onClick={() => navigate('/login', { state: { background: location } })}>로그인</button>
-            <button onClick={() => navigate('/signup', { state: { background: location } })}>회원가입</button>
+            <button onClick={() => navigate('/signup')}>회원가입</button>
           </>
         )}
       </div>

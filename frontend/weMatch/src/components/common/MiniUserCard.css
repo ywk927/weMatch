@@ -1,45 +1,64 @@
-/* MiniUserCard.css */
-
 .mini-user-card {
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 0.75rem 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  margin-bottom: 0.75rem;
+  background-color: #f7efd6; /* 연한 아이보리 */
+  border-radius: 16px;
+  padding: 1rem;
   font-family: sans-serif;
+  width: 100%;              /* ✅ 부모 너비에 맞춤 */
+  max-width: 300px;         /* ✅ 최대 너비 제한 */
+  box-sizing: border-box;   /* ✅ padding 포함한 너비 계산 */
+  cursor: pointer;
 }
 
-.user-header {
+/* 상단: 이미지 + 텍스트 나란히 */
+.mini-user-top {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
-.user-nickname {
-  font-weight: bold;
-  font-size: 1rem;
-  color: #58287F; /* 진보라 강조 */
+.mini-user-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #eaeaea;
+  border: 2px solid white;
 }
 
-.user-level {
-  font-size: 0.8rem;
-  background-color: #F5EDCE; /* 아이보리 배경 */
-  padding: 2px 6px;
-  border-radius: 5px;
-  color: #58287F; /* 진보라 텍스트 */
-}
-
-.user-skills {
+.mini-user-info {
   display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.skill-tag {
-  font-size: 0.75rem;
+.mini-user-nickname {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.mini-user-position {
+  font-size: 0.95rem;
+  color: #333;
+  margin-top: 0.25rem;
+}
+
+.check-icon {
+  margin-right: 4px;
+}
+
+/* 하단 스킬 목록 */
+.mini-user-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.mini-skill-tag {
   background-color: #89C4E1;
   color: white;
-  padding: 2px 6px;
-  border-radius: 4px;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 8px;
 }

@@ -1,11 +1,26 @@
 // src/pages/Home/MatchTab.jsx
 
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axiosInstance from '../../lib/axiosInstance'
 import UserCard from '../../components/common/UserCard'
 import './TabCommon.css'
 
-const MatchTab = ({ userList }) => {
+const MatchTab = () => {
   const navigate = useNavigate()
+  const [userList, setUserList] = useState([])
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const res = await axiosInstance.get('/users')
+        setUserList(res.data)
+      } catch (err) {
+        console.error('유저 목록 로드 실패:', err)
+      }
+    }
+    fetchUsers()
+  }, [])
 
   return (
     <div className="tab-container">
@@ -36,11 +51,10 @@ const MatchTab = ({ userList }) => {
       </div>
 
       {/* 유저 리스트 */}
-      <div className="list-section">
-        {Array.isArray(userList) &&
-          userList.map((user) => (
-            <UserCard key={user._id} user={user} />
-          ))}
+      <div className="list-section scrollable-user-list">
+        {userList.map((user) => (
+          <UserCard key={user._id} user={user} />
+        ))}
       </div>
     </div>
   )

@@ -32,23 +32,25 @@ exports.getAllProjects = async (req, res) => {
   res.json(projects)
 }
 
-
+// creator.id 조회 위해 const project 구문 수정_jin 06/28
 // 특정 프로젝트 상세 조회
 // GET /api/projects/:id
 exports.getProjectById = async (req, res) => {
-  const project = await Project.findById(req.params.id).populate('creator', 'nickname')
+  // 아래 부분 populate에 추가_jin 06/28
+  const project = await Project.findById(req.params.id).populate('creator', '_id nickname email position image description skills')
   if (!project) return res.status(404).json({ message: 'Not found' })
   // 지원자 수와 합격자 수 계산
   const applicantCount = await Application.countDocuments({ project: project._id })
   const acceptedCount = await Application.countDocuments({ project: project._id, status: 'accepted' })
   res.json({
-    ...project.toObject(),
+    // ...project.toObject(), 주석 처리_jin 06/28
+    project, // 추가_jin 06/28
     applicantCount,
     acceptedCount
   })
 }
 
-
+// 수정 시, 모든 항목이 수정 가능하도록 수정합니다.._jin 06/28
 // 프로젝트 수정
 // PUT /api/projects/:id
 exports.updateProject = async (req, res) => {
@@ -60,11 +62,14 @@ exports.updateProject = async (req, res) => {
     return res.status(403).json({ message: 'Unauthorized' })
   }
 
-  const { title, description } = req.body
+  // 해당 부분 skills, recruitCount 추가_jin 06/28
+  const { title, description, skills, recruitCount } = req.body
 
   // 전달된 값이 있는 경우에만 업데이트
   project.title = title || project.title
   project.description = description || project.description
+  project.skills = skills || project.skills
+  project.recruitCount = recruitCount || project.recruitCount
 
   await project.save()
   res.json(project)
