@@ -1,101 +1,78 @@
-/* UserCard.css */
-
 .user-card {
-  background: white;
-  border-radius: 12px;
+  display: flex;
+  background-color: #fdf6dc; /* 연한 아이보리 */
+  border-radius: 16px;
   padding: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  margin-bottom: 1.5rem;
+  gap: 1rem;
+  align-items: flex-start;
   font-family: sans-serif;
-  position: relative;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+  transition: transform 0.15s ease-in-out;
+  cursor: pointer;
 }
 
-.user-card-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  position: relative;
+.user-card:hover {
+  transform: translateY(-2px);
 }
 
 .user-profile-img {
-  width: 48px;
-  height: 48px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid #89C4E1;
+  border: 2px solid #89C4E1;
+  background-color: #eaeaea;
 }
 
-.user-header-content {
+.user-card-right {
   flex: 1;
-}
-
-.user-header-top {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 0.5rem;
 }
 
-.user-name {
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-.follow-btn {
-  background-color: transparent;
-  border: 1px solid #58287F;
-  color: #58287F;
-  font-size: 0.75rem;
-  padding: 2px 6px;
-  border-radius: 4px;
-  cursor: pointer;
+.user-card-top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
 }
 
 .user-position {
   font-size: 0.85rem;
+  font-weight: 400;
   color: #444;
-  margin-top: 0.2rem;
+}
+
+.user-description {
+  background: white;
+  padding: 0.75rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  color: #222;
+  line-height: 1.4;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
 }
 
 .user-skills {
   display: flex;
-  gap: 6px;
-  margin-top: 0.4rem;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 
 .skill-tag {
-  font-size: 0.75rem;
   background-color: #89C4E1;
   color: white;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-.user-card-time {
-  font-size: 0.7rem;
-  color: #aaa;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.user-card-buttons {
-  margin-top: 0.75rem;
-  display: flex;
-  gap: 0.5rem;
-}
-
-.tag-btn {
   font-size: 0.75rem;
-  padding: 4px 8px;
-  border: none;
-  background-color: #F5EDCE;
-  color: #58287F;
+  padding: 3px 8px;
   border-radius: 6px;
-  cursor: pointer;
 }
 
-.user-card-body {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  line-height: 1.5;
+.user-email {
+  align-self: flex-end;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #222;
 }

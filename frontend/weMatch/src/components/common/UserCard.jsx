@@ -2,43 +2,46 @@
 
 import './UserCard.css'
 import userDefault from '../../assets/icons/user.png'
+import { useNavigate } from 'react-router-dom'
 
 const UserCard = ({ user }) => {
-  const { nickname, skills, level, description } = user
+  const navigate = useNavigate()
+  if (!user) return null
+
+  const { _id, nickname, position, description, email, skills, image } = user
+  const imageUrl = image ? `http://localhost:3000/${image}` : userDefault
 
   return (
-    <div className="user-card">
-      {/* 상단 */}
-      <div className="user-card-header">
-        <img src={userDefault} alt="프로필" className="user-profile-img" />
-        <div className="user-header-content">
-          <div className="user-header-top">
-            <span className="user-name">{nickname || '익명'}</span>
-            <button className="follow-btn">+ 팔로우</button>
-          </div>
-          <div className="user-position">{level || '포지션 미정'}</div>
-          <div className="user-skills">
-            {skills?.slice(0, 3).map((skill, idx) => (
-              <span key={idx} className="skill-tag">#{skill}</span>
-            ))}
-          </div>
+    <div className="user-card" onClick={() => navigate(`/profile/${_id}`)}>
+      {/* 좌측: 프로필 이미지 */}
+      <div className="user-card-left">
+        <img src={imageUrl} alt="프로필" className="user-profile-img" />
+      </div>
+
+      {/* 우측: 전체 내용 */}
+      <div className="user-card-right">
+        {/* 닉네임 + 포지션 */}
+        <div className="user-card-top">
+          <div className="user-nickname">{nickname || '익명'}</div>
+          {position && <div className="user-position">✔ {position}</div>}
         </div>
-        <div className="user-card-time">25.06.26 (3시간 전 갱신)</div>
-      </div>
 
-      {/* 버튼 */}
-      <div className="user-card-buttons">
-        <button className="tag-btn">🙋‍♂️ 자기소개</button>
-        <button className="tag-btn">👥 팀원모집</button>
-      </div>
+        {/* 설명 */}
+        <div className="user-description">
+          {description || <i style={{ color: '#aaa' }}>소개가 없습니다.</i>}
+        </div>
 
-      {/* 설명 */}
-      <div className="user-card-body">
-        {description ? (
-          <p>{description}</p>
-        ) : (
-          <p style={{ color: '#ccc', fontStyle: 'italic' }}>소개가 아직 없습니다.</p>
-        )}
+        {/* 스킬 */}
+        <div className="user-skills">
+          {skills?.slice(0, 3).map((skill, idx) => (
+            <span key={idx} className="skill-tag">
+              #{skill.name}({skill.level})
+            </span>
+          ))}
+        </div>
+
+        {/* 이메일 */}
+        <div className="user-email">@{email}</div>
       </div>
     </div>
   )

@@ -1,0 +1,151 @@
+/* 전체 페이지 컨테이너 */
+.project-detail-container {
+  background-color: #FFFBEA;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+
+/* ============ 상단 헤더 영역 ============ */
+.project-detail-header-wrapper {
+  background-color: #FFF2C5;
+  padding: 3rem 2rem 6rem;
+  border-radius: 0 0 32px 32px;
+  text-align: center;
+}
+
+.project-detail-header {
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project-detail-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  background-color: #89C4E1;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  margin-bottom: 0.5rem;
+}
+
+.project-detail-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 2.2rem;
+  margin-bottom: 0;
+  color: #000;
+}
+
+.project-detail-creator-badge {
+  display: block;
+  background-color: #58287F;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.project-detail-recruit-status {
+  display: block;
+  margin-top: 1rem;
+  background-color: #89C4E1;
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+}
+
+/* ============ 본문 전체 ============ */
+.project-detail-content-wrapper {
+  display: flex;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+/* 좌측 본문 */
+.project-detail-content-left {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* 우측 (작성자 카드) */
+.project-detail-content-right {
+  flex: 1;
+  background-color: #F7EFD6;
+  border-radius: 16px;
+  padding: 1rem;
+  height: fit-content;
+}
+
+/* ============ 각 블록 스타일 ============ */
+.project-detail-section h3 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.project-detail-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-detail-apply-btn {
+  background-color: #89C4E1;
+  color: white;
+  border: none;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.project-detail-apply-btn:hover {
+  opacity: 0.9;
+}
+
+.project-detail-card-list {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.project-detail-user-card {
+  background-color: #F7EFD6;
+  padding: 1rem;
+  border-radius: 10px;
+  flex: 1;
+}
+
+/* 프로젝트 설명 박스 */
+.project-detail-description {
+  min-height: 120px;
+  background-color: #F7EFD6;
+  border-radius: 10px;
+  padding: 1rem;
+  white-space: pre-wrap;
+}
+
+/* 스택 태그 */
+.project-detail-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-detail-skill-tag {
+  background-color: #58287F;
+  color: white;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 10px;
+}

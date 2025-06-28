@@ -38,14 +38,16 @@ exports.applyProject = async (req, res) => {
 
 // 프로젝트 작성자가 신청 목록 조회
 // GET /api/projects/:id/applications
+// 수정 *로그인, 작성자 여부 관계 없이* 모두 조회 가능 - jin 06/28
 exports.getApplicationsByProject = async (req, res) => {
-  const userId = req.userId
+  // const userId = req.userId -> 주석 처리함_jin
   const projectId = req.params.id
 
   // 프로젝트 존재 여부 및 권한 확인
   const project = await Project.findById(projectId)
   if (!project) return res.status(404).json({ message: '프로젝트 없음' })
-  if (project.creator.toString() !== userId) return res.status(403).json({ message: '권한 없음' })
+  // 아래 부분도 주석 처리_jin
+  // if (project.creator.toString() !== userId) return res.status(403).json({ message: '권한 없음' })
 
   // 신청 목록 조회 및 사용자 정보 포함
   const applications = await Application.find({ project: projectId })

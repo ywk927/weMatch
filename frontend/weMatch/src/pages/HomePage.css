@@ -37,7 +37,16 @@
   overflow-y: auto;
 }
 
+.right-top h4 {
+  margin-top: 1rem;  /* ✅ 위 여백 */
+  margin-bottom: 1rem;  /* ✅ 아래 여백 */
+}
+
 .right-bottom {
   margin-top: 1rem;
   text-align: center;
+}
+
+.card-spacing {
+  margin-bottom: 1rem;
 }

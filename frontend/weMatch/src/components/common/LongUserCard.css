@@ -1,0 +1,87 @@
+.long-user-card {
+  background-color: #f7efd6;
+  border-radius: 20px;
+  padding: 1.25rem;
+  font-family: sans-serif;
+  max-width: 320px;
+  box-sizing: border-box;
+}
+
+/* 상단 영역 */
+.long-user-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.long-user-img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+  background-color: #eee;
+}
+
+.long-user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.long-user-nickname {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.long-user-position {
+  font-size: 0.95rem;
+  color: #333;
+  margin-top: 0.25rem;
+}
+
+.check-icon {
+  margin-right: 4px;
+}
+
+.long-user-email {
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 0.2rem;
+}
+
+/* 설명 박스 */
+.long-user-description {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  white-space: pre-wrap;
+}
+
+/* 스킬 태그 */
+.long-user-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.long-skill-tag {
+  background-color: #89C4E1;
+  color: white;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.long-user-card {
+  cursor: pointer;
+  transition: transform 0.15s ease-in-out;
+}
+
+.long-user-card:hover {
+  transform: translateY(-2px);
+}

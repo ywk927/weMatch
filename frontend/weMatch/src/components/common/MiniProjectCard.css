@@ -1,44 +1,93 @@
-/* MiniProjectCard.css */
-
 .mini-project-card {
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 0.5rem 0.75rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  margin-bottom: 0.75rem;
-  font-family: sans-serif;
-}
-
-.project-title {
-  font-weight: bold;
-  font-size: 1rem;
-  margin-bottom: 0.25rem;
-  color: #58287F; /* 진보라 강조 */
-}
-
-.project-description {
-  font-size: 0.85rem;
-  color: #333;
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
-}
-
-.project-skills {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+  padding: 1.2rem 1.5rem;
+  font-family: 'Pretendard', sans-serif;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
   display: flex;
-  gap: 6px;
+  flex-direction: column;
+  gap: 0.9rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.mini-project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.07);
+}
+
+/* 🟣 상단: 제목 + 닉네임 + 인원 */
+.mini-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.mini-card-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.mini-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #000;
+}
+
+.mini-card-nickname {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #333;
+}
+
+.mini-card-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  min-width: 90px;
+  text-align: right;
+  gap: 0.3rem;
+}
+
+.mini-card-recruit-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #000;
+}
+
+.mini-card-recruit-count {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* 🟢 하단: 기술 스택 */
+.mini-card-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.mini-card-stack-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #222;
+}
+
+.mini-card-skills {
+  display: flex;
+  gap: 0.4rem;
   flex-wrap: wrap;
-  margin-bottom: 0.5rem;
 }
 
-.skill-badge {
-  font-size: 0.75rem;
-  background-color: #89C4E1;
+.mini-card-skill-badge {
+  background: #58287F;
   color: white;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-.project-recruit {
-  font-size: 0.75rem;
-  color: #000; /* 더 명확한 텍스트 대비 */
+  padding: 0.25rem 0.7rem;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  font-weight: 500;
 }

@@ -1,0 +1,163 @@
+/* --- 상단 전체 배경 포함한 섹션 --- */
+.page-header-wrapper {
+  background-color: #f1f1f1;
+  padding: 3rem 2rem 7rem;
+  border-radius: 0 0 32px 32px;
+  position: relative;
+  width: 100vw;
+  margin-top: 0
+}
+
+/* ✅ 헤더 내부 정렬을 위한 래퍼 추가 (프로젝트 리스트와 너비 맞춤) */
+.page-header {
+  max-width: 1200px;     /* 리스트 카드와 동일한 기준선 */
+  margin: 0 auto;
+  text-align: left;      /* 왼쪽 정렬 */
+  margin-left: 30rem
+}
+
+/* 텍스트 스타일링 */
+.page-header h2 {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+.page-header h3 {
+  margin-top: 1rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #000;
+}
+
+/* 캐러셀 */
+/* 바깥 래퍼: 위치 + 중앙정렬 + overflow */
+.carousel-wrapper {
+  position: absolute;
+  top: 15rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  overflow: hidden;
+}
+
+/* 내부 캐러셀: 애니메이션 슬라이딩 */
+.project-carousel {
+  display: flex;
+  gap: 1rem;
+  animation: slide-carousel 15s linear infinite;
+}
+
+.project-carousel:hover {
+  animation-play-state: paused;
+}
+
+.project-carousel > * {
+  flex-shrink: 0;
+  width: 240px;
+  height: 160px;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 슬라이드 애니메이션 */
+@keyframes slide-carousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* 필터 + 콘텐츠 */
+.project-content {
+  margin-top: 10rem;
+  display: flex;
+  padding: 1rem 2rem 3rem;
+  gap: 2rem;
+}
+
+/* 필터 박스 */
+.project-filter {
+  width: 220px;
+  height: 600px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.project-filter p {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.project-filter h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.filter-skill-list label {
+  display: block;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+/* 검색창 */
+.search-box {
+  width: 720px;
+  max-width: 100%;             /* ✅ 부모 범위 넘지 않도록 */
+  box-sizing: border-box;      /* ✅ padding 포함 너비 계산 */
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  background: #eee;
+  margin-bottom: 1.5rem;
+  outline: none;
+}
+
+/* 프로젝트 카드 */
+/* 프로젝트 카드 리스트 전체 영역 */
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;          /* ✅ 카드 간 세로 간격 설정 */
+  margin-top: 1rem;
+}
+
+.long-project-card {
+  width: 960px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+.long-project-card h4 {
+  font-size: 1.2rem;
+  color: #58287F;
+  margin-bottom: 0.5rem;
+}
+.long-project-card p {
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.more-button {
+  margin-top: 0.75rem;
+  padding: 0.5rem 1rem;
+  background-color: #58287F;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.more-button:hover {
+  background-color: #3e1e5c;
+}
