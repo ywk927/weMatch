@@ -14,13 +14,7 @@ exports.getUserById = async (req, res) => {
     if (!user) return res.status(404).json({ message: '사용자를 찾을 수 없습니다' })
 
     // 사용자 정보 응답
-    res.json({
-      nickname: user.nickname,
-      skills: user.skills,
-      position: user.position,
-      image: user.image,
-      description: user.description
-    })
+    res.json(user)
   } catch (err) {
     // 에러 발생 시 서버 오류 반환
     console.error('getUserById error:', err)
@@ -45,6 +39,16 @@ exports.updateMyProfile = async (req, res) => {
     if (position !== undefined) user.position = position
     if (image !== undefined) user.image = image
     if (description !== undefined) user.description = description
+
+    // ✅ 이미지가 새로 업로드된 경우 req.file 경로 사용
+    if (req.file) {
+      user.image = `/uploads/${req.file.filename}`
+    }
+
+    // ✅ (선택) 문자열로 이미지 URL을 직접 보낸 경우도 반영
+    if (req.body.image && !req.file) {
+      user.image = req.body.image
+    }
 
     // 변경사항 저장
     await user.save()

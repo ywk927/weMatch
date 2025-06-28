@@ -18,7 +18,7 @@ const ProfilePage = () => {
   return (
     <div className="container">
       <h1>{user.nickname}님의 프로필</h1>
-      <MyInfoCard user={user} />
+      <MyInfoCard user={user} isPublic={true} />
     </div>
   )
 }

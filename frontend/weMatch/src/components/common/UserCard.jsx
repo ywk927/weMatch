@@ -9,7 +9,7 @@ const UserCard = ({ user }) => {
   if (!user) return null
 
   const { _id, nickname, position, description, email, skills, image } = user
-  const imageUrl = image ? `http://localhost:3000/${image}` : userDefault
+  const imageUrl = image ? `http://localhost:3000${image}` : userDefault
 
   return (
     <div className="user-card" onClick={() => navigate(`/profile/${_id}`)}>

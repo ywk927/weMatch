@@ -8,7 +8,7 @@ const LongUserCard = ({ user, isCurrentUser = false }) => {
 
   const navigate = useNavigate()
   const { _id, nickname, position, email, description, skills, image } = user
-  const imageUrl = image ? `http://localhost:3000/${image}` : defaultImg
+  const imageUrl = image ? `http://localhost:3000${image}` : defaultImg
 
   const handleClick = () => {
     if (isCurrentUser) {

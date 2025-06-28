@@ -16,6 +16,7 @@ export default function ProfileEditPage() {
     position: '',
     skills: [],
     image: null,
+    description: '',
   })
 
   const [skillInput, setSkillInput] = useState({ name: '', level: '' })
@@ -28,6 +29,7 @@ export default function ProfileEditPage() {
         position: user.position || '',
         skills: user.skills || [],
         image: null,
+        description: user.description || '',
       })
     }
   }, [user])
@@ -56,7 +58,13 @@ export default function ProfileEditPage() {
       formData.append('nickname', form.nickname)
       formData.append('position', form.position)
       formData.append('skills', JSON.stringify(form.skills))
+      formData.append('description', form.description)
       if (form.image) formData.append('image', form.image)
+
+      // console.log('💾 제출 데이터 확인')
+      // for (const pair of formData.entries()) {
+      //   console.log(pair[0], pair[1])
+      // }
 
       const res = await axiosInstance.put('/users/me', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
@@ -64,7 +72,7 @@ export default function ProfileEditPage() {
 
       setUser(res.data)
       alert('✅ 프로필 수정 완료!')
-      navigate('/profile/' + res.data._id)
+      navigate('/profile')
     } catch (err) {
       alert('❌ 수정 실패')
       console.error(err)
@@ -173,12 +181,48 @@ export default function ProfileEditPage() {
           </div>
 
           <ul className="skill-list">
-            {form.skills.map((skill, idx) => (
-              <li key={idx}>
-                {skill.name} ({skill.level})
-              </li>
-            ))}
-          </ul>
+          {form.skills.map((skill, idx) => (
+            <li
+              key={idx}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                marginBottom: '6px',
+              }}
+            >
+              {skill.name} ({skill.level})
+              <button
+                type="button"
+                onClick={() => {
+                  const updatedSkills = [...form.skills]
+                  updatedSkills.splice(idx, 1)
+                  setForm({ ...form, skills: updatedSkills })
+                }}
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  color: 'red',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                }}
+              >
+                ✕
+              </button>
+            </li>
+          ))}
+        </ul>
+
+          {/* 자기소개 */}
+          <h3>✔️ 자기소개</h3>
+          <textarea
+            className="profile-edit-input"
+            name="description"
+            placeholder="자신을 소개해 주세요 :)"
+            rows={4}
+            value={form.description}
+            onChange={handleChange}
+          />
         </div>
 
         {/* 제출 버튼 */}
