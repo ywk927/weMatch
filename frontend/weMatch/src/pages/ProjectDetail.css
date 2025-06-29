@@ -149,3 +149,42 @@
   padding: 0.4rem 0.8rem;
   border-radius: 10px;
 }
+
+.project-detail-button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+/* + 버튼 */
+.accept-btn {
+  background-color: #89C4E1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.3rem 0.9rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.accept-btn:hover {
+  background-color: #78b1cc;
+}
+
+/* - 버튼 */
+.reject-btn {
+  background-color: #F08080;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.3rem 0.9rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.reject-btn:hover {
+  background-color: #e16868;
+}
