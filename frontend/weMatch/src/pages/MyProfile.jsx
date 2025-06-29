@@ -1,7 +1,11 @@
+// MyProfile.jsx
+
+import './MyProfile.css'
 import { useEffect, useState } from 'react'
 import MyInfoCard from '../components/profile/MyInfoCard'
 import MyApplications from '../components/profile/MyApplications'
 import MyParticipations from '../components/profile/MyParticipations'
+import MyProjects from '../components/profile/MyProjects'
 import { useNavigate } from 'react-router-dom'
 import axiosInstance from '../lib/axiosInstance'
 
@@ -25,12 +29,24 @@ const Profile = () => {
   }, [])
 
   return (
-    <div className="container">
-      <h1>내 프로필</h1>
-      <button onClick={() => navigate('/profile/edit')}>수정하기</button>
-      <MyInfoCard user={user} />
-      <MyApplications />
-      <MyParticipations />
+    <div className="profile-container">
+      <div className="profile-header">
+        <h1>내 프로필</h1>
+        <button onClick={() => navigate('/profile/edit')}>수정하기</button>
+      </div>
+
+      <div className="profile-section">
+        <MyInfoCard user={user} />
+      </div>
+      <div className="profile-section">
+        <MyProjects />
+      </div>
+      <div className="profile-section">
+        <MyApplications />
+      </div>
+      <div className="profile-section">
+        <MyParticipations />
+      </div>
     </div>
   )
 }
