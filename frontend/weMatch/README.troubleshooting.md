@@ -1,6 +1,15 @@
-## 프로필 페이지 구현 과정에서 마주한 문제점과 해결 과정
+# 🛠 프론트엔드 트러블슈팅 (weMatch)
 
-### 구현 목표
+개발 과정에서 실제로 겪었던 문제 상황과 그에 대한 원인, 해결 방법을 정리했습니다.
+
+모든 항목은 실습 및 협업 과정에서 발생한 실제 이슈를 기반으로 작성되었습니다.
+
+---
+
+## ✅ 프로필 페이지 구현 중 발생한 문제
+
+### 🎯 구현 목표
+
 - 로그인한 사용자가 자신의 정보를 수정할 수 있는 **마이프로필 페이지** 구현
 - 다른 사용자의 정보를 열람할 수 있는 **타인 프로필 페이지** 구현
 - **기술 스택 등록, 이미지 업로드, 자기소개 작성** 등의 기능 포함
@@ -8,51 +17,119 @@
 ---
 
 ### 1. 로그인 상태에서 토큰이 `null`로 나오는 문제
-- **문제점**: `fetchUser()`에서 `localStorage`로부터 토큰을 불러오는데 `null`이 반환됨
-- **원인**: Postman을 통해 로그인할 경우, 브라우저의 `localStorage`에 토큰이 저장되지 않음
-- **해결 방법**: 개발자 도구 콘솔에서 `localStorage.setItem()`으로 직접 토큰을 저장하여 문제 해결
 
-  ```js
-  localStorage.setItem('auth', JSON.stringify({ token: '발급받은토큰', isAuthenticated: true }))
-  ```
-
----
-
-### 2. Zustand store에서 `user` 데이터를 제대로 불러오지 못하는 문제
-- **문제점**: `useUserStore()`로 user 상태를 불러오려 했으나, `undefined` 에러 발생
-- **원인**: `fetchUser` 실행 시점에 토큰이 `null`이어서 요청 실패 → 상태값이 업데이트되지 않음
-- **해결 방법**:
-  - `fetchUser` 내부에서 토큰 존재 여부 확인 후 요청 수행
-  - 컴포넌트에서는 `user?.skills?.map(...)` 등 optional chaining 사용
+- **문제**: `fetchUser()`에서 `localStorage`로부터 토큰이 `null` 반환
+- **원인**: Postman으로 로그인하면 브라우저 `localStorage`에 토큰이 없음
+- **해결**:
+    
+    ```jsx
+    
+    localStorage.setItem('auth', JSON.stringify({ token: '발급받은토큰', isAuthenticated: true }))
+    
+    ```
+    
 
 ---
 
-### 3. React에서 `pinia` 사용하려 했던 실수
-- **문제점**: Vue 전용 상태 관리 라이브러리인 Pinia를 React에서 사용하려고 시도함
-- **해결 방법**: React에서는 `Zustand`, `Redux`, `Context API` 등 전용 상태 관리 도구를 사용하는 것이 일반적임을 인지하고 `Zustand`로 전환
+### 2. Zustand store에서 `user` 상태 불러오기 실패
+
+- **문제**: `useUserStore()` 사용 시 `undefined` 에러 발생
+- **원인**: 토큰 없이 API 요청 → 상태값 업데이트 실패
+- **해결**:
+    - `fetchUser` 내부에서 토큰 유무 확인
+    - 컴포넌트에선 optional chaining 사용
+        
+        `user?.skills?.map(...)`
+        
+
+---
+
+### 3. React에서 Pinia 사용하려 했던 실수
+
+- **문제**: React에 Vue 전용 상태관리 도구인 Pinia 적용 시도
+- **해결**: `Zustand`로 전환 → React 전용 상태관리 도구 사용
 
 ---
 
 ### 4. 프로필 이미지 업로드 실패 (500 에러)
-- **문제:** 이미지 업로드 시 서버에서 `ENOENT: no such file or directory` 오류 발생  
-- **원인:** `uploads/` 폴더가 서버 루트에 존재하지 않아서 multer가 저장하지 못함
-- **해결:** `uploads/` 폴더 직접 생성 및 `express.static()`을 통해 `/uploads` 경로 정적 서빙 처리
-```js
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
 
-```
-
----
-
-### 5. 이미지가 프론트에서 표시되지 않음
-- **문제:** DB에는 /uploads/파일명으로 저장되었지만 이미지가 보이지 않음
-- **원인:** 이미지 경로를 프론트에서 잘못 조합했거나, 백엔드 응답에 이미지 경로가 없었음
-- **해결:** user.image가 존재할 경우: `http://localhost:3000${user.image}` 형식으로 경로 조합
-
-백엔드 응답에서 image를 포함하도록 .select() 설정
+- **문제**: `ENOENT: no such file or directory` 에러
+- **원인**: `uploads/` 폴더가 존재하지 않음
+- **해결**:
+    
+    ```jsx
+    
+    app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
+    
+    ```
+    
 
 ---
 
-##  느낀 점
-- 단순히 토큰을 백엔드에서 발급받는 것에 그치지 않고, **프론트에서 적절히 저장하고 활용하는 로직**이 중요하다는 걸 깨달음
-- `console.log()`를 적극적으로 활용하며 문제 원인을 추적하는 습관이 개발 속도에 큰 영향을 준다는 걸 체감함
+### 5. 이미지가 프론트에 표시되지 않음
+
+- **문제**: DB에는 저장됐지만 렌더링되지 않음
+- **원인**: URL 조합 문제 or 백엔드 응답에 image 필드 누락
+- **해결**:
+    - `http://localhost:3000${user.image}`로 렌더링
+    - 백엔드 `.select('image')` 설정
+
+---
+
+## ✅ 공통 기능/스타일 관련 이슈
+
+### 6. JWT 토큰 저장 및 axios 자동 주입 문제
+
+- **문제**: 새로고침 후 토큰이 반영되지 않거나, axios 헤더에 누락됨
+- **해결**:
+    
+    ```jsx
+    
+    const raw = localStorage.getItem('user-store')
+    const parsed = raw ? JSON.parse(raw) : null
+    const token = parsed?.state?.token
+    config.headers.Authorization = `Bearer ${token}`
+    
+    ```
+    
+
+---
+
+### 7. 로그인 실패 (401 Unauthorized)
+
+- **원인**:
+    - 잘못된 API 주소
+    - CORS 설정 누락
+    - 빈 값 전달
+    - JWT_SECRET 누락
+    - bcrypt 비교 실패 (백엔드)
+- **해결**:
+    - `.env` 점검
+    - form validation 보강
+    - 응답 메시지를 명확하게 프론트에 전달
+
+---
+
+### 8. 라우팅 + 모달 조합 이슈
+
+- **문제**: location.state 기반 모달이 새로고침/뒤로가기 시 전체 전환됨
+- **해결**:
+    - `/login`, `/signup` 같은 별도 페이지로 라우팅 리팩토링
+    - `useLocation()` + 조건부 렌더링 조합 개선
+
+---
+
+### 10. react-quill 에디터 삽입 실패
+
+- **문제**: 스타일이 깨지고 편집기 기능이 이상함
+- **원인**: Tailwind와 CSS 충돌, 커스터마이징 한계
+- **해결**: `react-quill` 제거 → `textarea` + Tailwind로 편집기 구현
+
+---
+
+## 💬 느낀 점
+
+- 단순한 기능 구현보다 **상태 흐름과 시점 제어**가 중요
+- `console.log()`를 통한 디버깅은 가장 강력한 도구
+- 팀 협업에서 발생할 수 있는 Git, CSS 충돌은 **초기 규칙화가 핵심**
+- 불안정한 외부 라이브러리보단 **단순한 기본 구현 + Tailwind 스타일**이 더 유지보수에 유리
