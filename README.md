@@ -38,9 +38,10 @@
 - express-validator (회원가입 유효성 검사)
 
 
-## 🎨 디자인 시안
+## 🎨 디자인 시안 & 구현
 
 👉 [Figma 디자인 링크 바로가기](https://www.figma.com/design/iKOKhlPf52sLQcHHOaegcu/weMatch_pjt?node-id=0-1&t=l5OB0ZSc28fsGR8L-1)
+👉 [실제 구현 결과](./frontend/weMatch/README.design.md)
 
 > 디자인 시안은 일부 구현과 다를 수 있습니다.
 > 
