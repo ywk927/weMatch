@@ -163,6 +163,7 @@ const ProjectDetail = () => {
   
         {/* 우측: 작성자 카드 */}
         <div className="project-detail-content-right">
+          <h3 className="project-detail-creator">🧑‍💻 작성자 정보</h3>
           <LongUserCard user={project.creator} />
         </div>
       </div>

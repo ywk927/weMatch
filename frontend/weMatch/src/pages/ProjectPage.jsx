@@ -85,7 +85,17 @@ const ProjectPage = () => {
       <div className="carousel-wrapper">
         <div className="project-carousel" ref={carouselRef}>
           {[...allProjects, ...allProjects].map((p, idx) => (
-            <ProjectCard key={p._id + '-' + idx} project={p} />
+            <ProjectCard
+              className="project-carousel-card"
+              key={p._id + '-' + idx}
+              project={{
+                ...p,
+                description:
+                  p.description?.length > 50
+                    ? p.description.slice(0, 50) + '...'
+                    : p.description,
+              }}
+            />
           ))}
         </div>
       </div>
@@ -117,10 +127,19 @@ const ProjectPage = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
+          <span
+            className="search-icon"
+          >
+            🔍
+          </span>
 
           <div className="project-list">
             {filteredProjects.map((project) => (
-              <ProjectCard key={project._id} project={project} />
+              <ProjectCard   
+                className="project-list-card"
+                key={project._id}
+                project={project}
+              />
             ))}
           </div>
         </section>
