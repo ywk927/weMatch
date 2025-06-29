@@ -3,7 +3,7 @@
 import { useNavigate } from 'react-router-dom'
 import './ProjectCard.css'
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, className = '' }) => {
   const navigate = useNavigate()
   const {
     _id,
@@ -21,7 +21,7 @@ const ProjectCard = ({ project }) => {
   }
 
   return (
-    <div className="project-card" onClick={handleClick}>
+    <div className={`project-card ${className}`} onClick={handleClick}>
       <div className="project-card-header">
         <div>
           <div className="project-card-title">{title}</div>
@@ -35,7 +35,7 @@ const ProjectCard = ({ project }) => {
       </div>
     
       <div className="project-description-box">
-        {description?.length > 100 ? description.slice(0, 100) + '...' : description}
+        {description?.length > 300 ? description.slice(0, 300) + '...' : description}
       </div>
     
       <div className="project-stack-label">🌱 필수 스택</div>

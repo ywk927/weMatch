@@ -7,6 +7,7 @@
 
 /* ============ 상단 헤더 영역 ============ */
 .project-detail-header-wrapper {
+  height: 180px;
   background-color: #FFF2C5;
   padding: 3rem 2rem 6rem;
   border-radius: 0 0 32px 32px;
@@ -14,7 +15,8 @@
 }
 
 .project-detail-header {
-  height: 150px;
+  max-width: 1000px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,14 +29,14 @@
   color: white;
   padding: 0.3rem 0.8rem;
   border-radius: 999px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0rem;
 }
 
 .project-detail-title {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 700;
-  margin-top: 2.2rem;
-  margin-bottom: 0;
+  margin-top: 2rem;
+  margin-bottom: 0.2rem;
   color: #000;
 }
 
@@ -45,13 +47,13 @@
   padding: 0.5rem 1.2rem;
   border-radius: 999px;
   font-size: 0.9rem;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
+  margin-top: 4rem;
+  margin-bottom: 0.8rem;
 }
 
 .project-detail-recruit-status {
   display: block;
-  margin-top: 1rem;
+  margin-top: 0.1rem;
   background-color: #89C4E1;
   color: white;
   font-size: 0.75rem;
@@ -64,8 +66,8 @@
   display: flex;
   gap: 2rem;
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 3rem 2rem;
+  margin: -2rem auto 0; /* 헤더와 연결감 있게 */
+  padding: 4rem 2rem 3rem;
 }
 
 /* 좌측 본문 */
@@ -78,19 +80,34 @@
 
 /* 우측 (작성자 카드) */
 .project-detail-content-right {
+  margin-top: 1rem;
+  margin-left: 2rem;
   flex: 1;
-  background-color: #F7EFD6;
-  border-radius: 16px;
-  padding: 1rem;
+  background-color: #fff;
+  border: 2px solid #f0e3cc;
+  border-radius: 20px;
+  padding: 1.5rem 1.5rem;
   height: fit-content;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+
+}
+
+/* 작성자 헤더 */
+.project-detail-creator {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 0.3rem;
+  margin-bottom: 1rem;
+  margin-left: 0.25rem;
+  color: #333;
 }
 
 /* ============ 각 블록 스타일 ============ */
 .project-detail-section h3 {
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 1.3rem;
+  font-weight: 700;
   margin-bottom: 1rem;
-  color: #333;
+  color: #222;
 }
 
 .project-detail-section-header {
@@ -148,4 +165,44 @@
   font-size: 0.85rem;
   padding: 0.4rem 0.8rem;
   border-radius: 10px;
+}
+
+/* 수락/거절 버튼 영역 */
+.project-detail-button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+/* + 버튼 */
+.accept-btn {
+  background-color: #89C4E1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.3rem 0.9rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.accept-btn:hover {
+  background-color: #78b1cc;
+}
+
+/* - 버튼 */
+.reject-btn {
+  background-color: #F08080;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.3rem 0.9rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.reject-btn:hover {
+  background-color: #e16868;
 }

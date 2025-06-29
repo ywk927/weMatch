@@ -50,6 +50,30 @@ const ProjectDetail = () => {
     }
   }
 
+  // 지원자 수락/거절 로직 추가
+  const handleAccept = async (userId) => {
+    try {
+      await axiosInstance.post(`/projects/${id}/applications/${userId}/accept`)
+      setApplications((prev) =>
+        prev.map((app) =>
+          app.user._id === userId ? { ...app, status: 'accepted' } : app
+        )
+      )
+    } catch (err) {
+      console.error('수락 실패', err)
+    }
+  }
+  
+  const handleReject = async (userId) => {
+    try {
+      await axiosInstance.post(`/projects/${id}/applications/${userId}/reject`)
+      setApplications((prev) => prev.filter((app) => app.user._id !== userId))
+    } catch (err) {
+      console.error('거절 실패', err)
+    }
+  }  
+
+
   return (
     <div className="project-detail-container">
       {/* 상단 헤더 */}
@@ -112,7 +136,26 @@ const ProjectDetail = () => {
             <h3>지원자 현황</h3>
             <div className="project-detail-card-list">
               {pending.map((a) => (
-                <MiniUserCard key={a.user._id} user={a.user} />
+                <div key={a.user._id} className="project-detail-usercard-wrapper">
+                  <MiniUserCard user={a.user} />
+
+                  {isCreator && (
+                    <div className="project-detail-button-group">
+                      <button
+                        className="accept-btn"
+                        onClick={() => handleAccept(a.user._id)}
+                      >
+                        +
+                      </button>
+                      <button
+                        className="reject-btn"
+                        onClick={() => handleReject(a.user._id)}
+                      >
+                        -
+                      </button>
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
           </section>
@@ -120,6 +163,7 @@ const ProjectDetail = () => {
   
         {/* 우측: 작성자 카드 */}
         <div className="project-detail-content-right">
+          <h3 className="project-detail-creator">🧑‍💻 작성자 정보</h3>
           <LongUserCard user={project.creator} />
         </div>
       </div>

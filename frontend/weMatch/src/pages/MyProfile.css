@@ -1,0 +1,41 @@
+/* src/pages/MyProfile.css */
+
+.profile-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  font-family: 'Pretendard', sans-serif;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 2rem;
+}
+
+.profile-header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.profile-header button {
+  background-color: #89C4E1;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.profile-header button:hover {
+  background-color: #78b1cc;
+}
+
+/* 공통 섹션 여백 */
+.profile-section {
+  margin-bottom: 3rem;
+}

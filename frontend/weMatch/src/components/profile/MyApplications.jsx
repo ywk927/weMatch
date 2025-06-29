@@ -1,3 +1,7 @@
+// src/components/profile/MyApplications.jsx
+// -> '내가 신청한 프로젝트'
+// pending + rejected
+
 import { useEffect, useState } from 'react'
 import axiosInstance from '../../lib/axiosInstance'
 import MiniProjectCard from '../common/MiniProjectCard'
@@ -20,14 +24,18 @@ const MyApplications = () => {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const res = await axiosInstance.get('/users/me/applications') // [{ projectId, title, status }]
+        // 필터링 위해 meRes, myId 추가
+        const meRes = await axiosInstance.get('/auth/me') // ✅ 현재 로그인 유저
+        const myId = meRes.data.id
 
+        const res = await axiosInstance.get('/users/me/applications') // [{ projectId, title, status }]
         const detailed = await Promise.all(
           res.data.map(async (app) => {
             try {
               const projectRes = await axiosInstance.get(`/projects/${app.projectId}`)
-              // console.log('✅ 프로젝트 상세 정보:', projectRes.data)
-              return { project: projectRes.data, status: app.status }
+              const project = projectRes.data.project
+
+              return { project, status: app.status }
             } catch (err) {
               console.error(`❌ 프로젝트 ${app.projectId} 정보 불러오기 실패`, err)
               return null
@@ -35,7 +43,14 @@ const MyApplications = () => {
           })
         )
 
-        setApplications(detailed.filter(Boolean))
+        // 필터링 로직(pending + rejected 만)
+        const filtered = detailed
+          .filter(Boolean)
+          .filter(({ project, status }) =>
+            project && project.creator._id !== myId && status !== 'accepted'
+        )
+
+        setApplications(filtered)
       } catch (err) {
         console.error('❌ 신청한 프로젝트 목록 조회 실패:', err)
       }
@@ -51,20 +66,31 @@ const MyApplications = () => {
         <p>신청한 프로젝트가 없습니다.</p>
       ) : (
         applications.map(({ project, status }, idx) => (
-          <div key={`${project._id}-${status}-${idx}`} style={{ marginBottom: '20px' }}>
-            <MiniProjectCard project={project.project} />
-            <div style={{
-              ...statusStyle[status],
-              padding: '6px 12px',
-              borderRadius: '6px',
-              fontWeight: 'bold',
-              display: 'inline-block',
-              marginTop: '8px'
-            }}>
-              {statusText[status]}
+            <div
+              key={`${project._id}-${status}-${idx}`}
+              style={{
+                position: 'relative',
+                marginBottom: '40px'
+              }}
+            >
+              <MiniProjectCard project={project} />
+              <div
+                style={{
+                  ...statusStyle[status],
+                  position: 'absolute',
+                  bottom: '10px',
+                  right: '10px',
+                  padding: '6px 12px',
+                  borderRadius: '6px',
+                  fontWeight: 'bold',
+                  fontSize: '0.85rem',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                {statusText[status]}
+              </div>
             </div>
-          </div>
-        ))
+          ))
       )}
     </div>
   )
