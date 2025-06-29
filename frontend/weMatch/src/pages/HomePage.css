@@ -1,0 +1,52 @@
+.homepage-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 좌측 */
+.left-container {
+  width: 20%;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 중앙 */
+.center-container {
+  width: 60%;
+  overflow-y: auto; /* 중앙만 스크롤 가능 */
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+}
+
+/* 우측 */
+.right-container {
+  width: 20%;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.right-top {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.right-top h4 {
+  margin-top: 1rem;  /* ✅ 위 여백 */
+  margin-bottom: 1rem;  /* ✅ 아래 여백 */
+}
+
+.right-bottom {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.card-spacing {
+  margin-bottom: 1rem;
+}

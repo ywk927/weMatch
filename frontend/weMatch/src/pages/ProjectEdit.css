@@ -1,0 +1,93 @@
+/* src/pages/ProjectEdit.css */
+
+.project-edit-page {
+  background-color: #f4f4f4;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+
+.edit-banner {
+  background-color: #e4e4e4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 30px;
+}
+
+.edit-banner-text h2 {
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+.edit-banner-text .bold {
+  font-weight: bold;
+}
+
+.edit-banner-logo {
+  width: 140px;
+  height: auto;
+}
+
+.edit-form-container {
+  max-width: 700px;
+  margin: 40px auto;
+  background-color: #efefef;
+  padding: 30px;
+  border-radius: 16px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.input-placeholder {
+  background-color: #ccc;
+  height: 45px;
+  border-radius: 8px;
+}
+
+.input-small-placeholder {
+  background-color: #ccc;
+  width: 100px;
+  height: 45px;
+  border-radius: 8px;
+}
+
+.inline-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.textarea-placeholder {
+  background-color: #ccc;
+  height: 150px;
+  border-radius: 8px;
+}
+
+.tag-preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tag {
+  background-color: #58287f;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-family: monospace;
+}
+
+.x-button {
+  font-size: 0.85rem;
+  color: #333;
+}

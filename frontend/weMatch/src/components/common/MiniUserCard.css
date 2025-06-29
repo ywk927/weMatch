@@ -1,0 +1,64 @@
+.mini-user-card {
+  background-color: #f7efd6; /* 연한 아이보리 */
+  border-radius: 16px;
+  padding: 1rem;
+  font-family: sans-serif;
+  width: 100%;              /* ✅ 부모 너비에 맞춤 */
+  max-width: 300px;         /* ✅ 최대 너비 제한 */
+  box-sizing: border-box;   /* ✅ padding 포함한 너비 계산 */
+  cursor: pointer;
+}
+
+/* 상단: 이미지 + 텍스트 나란히 */
+.mini-user-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mini-user-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #eaeaea;
+  border: 2px solid white;
+}
+
+.mini-user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mini-user-nickname {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.mini-user-position {
+  font-size: 0.95rem;
+  color: #333;
+  margin-top: 0.25rem;
+}
+
+.check-icon {
+  margin-right: 4px;
+}
+
+/* 하단 스킬 목록 */
+.mini-user-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.mini-skill-tag {
+  background-color: #89C4E1;
+  color: white;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 8px;
+}

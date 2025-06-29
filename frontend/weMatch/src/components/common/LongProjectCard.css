@@ -1,0 +1,91 @@
+.long-project-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem 2rem;
+  font-family: 'Pretendard', sans-serif;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  gap: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.long-project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.long-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.long-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.long-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #000;
+}
+
+.long-nickname {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #444;
+}
+
+.long-description {
+  background: #C5E6F9;
+  border-radius: 14px;
+  padding: 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000;
+}
+
+.long-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.8rem;
+  min-width: 220px;
+}
+
+.long-stack-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #222;
+}
+
+.long-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.long-skill-badge {
+  background: #58287F;
+  color: white;
+  padding: 0.4rem 0.9rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.long-recruit {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+

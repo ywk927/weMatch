@@ -1,0 +1,208 @@
+/* 전체 페이지 컨테이너 */
+.project-detail-container {
+  background-color: #FFFBEA;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+
+/* ============ 상단 헤더 영역 ============ */
+.project-detail-header-wrapper {
+  height: 180px;
+  background-color: #FFF2C5;
+  padding: 3rem 2rem 6rem;
+  border-radius: 0 0 32px 32px;
+  text-align: center;
+}
+
+.project-detail-header {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project-detail-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  background-color: #89C4E1;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  margin-bottom: 0rem;
+}
+
+.project-detail-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.2rem;
+  color: #000;
+}
+
+.project-detail-creator-badge {
+  display: block;
+  background-color: #58287F;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  margin-top: 4rem;
+  margin-bottom: 0.8rem;
+}
+
+.project-detail-recruit-status {
+  display: block;
+  margin-top: 0.1rem;
+  background-color: #89C4E1;
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+}
+
+/* ============ 본문 전체 ============ */
+.project-detail-content-wrapper {
+  display: flex;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: -2rem auto 0; /* 헤더와 연결감 있게 */
+  padding: 4rem 2rem 3rem;
+}
+
+/* 좌측 본문 */
+.project-detail-content-left {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* 우측 (작성자 카드) */
+.project-detail-content-right {
+  margin-top: 1rem;
+  margin-left: 2rem;
+  flex: 1;
+  background-color: #fff;
+  border: 2px solid #f0e3cc;
+  border-radius: 20px;
+  padding: 1.5rem 1.5rem;
+  height: fit-content;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+
+}
+
+/* 작성자 헤더 */
+.project-detail-creator {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 0.3rem;
+  margin-bottom: 1rem;
+  margin-left: 0.25rem;
+  color: #333;
+}
+
+/* ============ 각 블록 스타일 ============ */
+.project-detail-section h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.project-detail-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-detail-apply-btn {
+  background-color: #89C4E1;
+  color: white;
+  border: none;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.project-detail-apply-btn:hover {
+  opacity: 0.9;
+}
+
+.project-detail-card-list {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.project-detail-user-card {
+  background-color: #F7EFD6;
+  padding: 1rem;
+  border-radius: 10px;
+  flex: 1;
+}
+
+/* 프로젝트 설명 박스 */
+.project-detail-description {
+  min-height: 120px;
+  background-color: #F7EFD6;
+  border-radius: 10px;
+  padding: 1rem;
+  white-space: pre-wrap;
+}
+
+/* 스택 태그 */
+.project-detail-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-detail-skill-tag {
+  background-color: #58287F;
+  color: white;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 10px;
+}
+
+/* 수락/거절 버튼 영역 */
+.project-detail-button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+/* + 버튼 */
+.accept-btn {
+  background-color: #89C4E1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.3rem 0.9rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.accept-btn:hover {
+  background-color: #78b1cc;
+}
+
+/* - 버튼 */
+.reject-btn {
+  background-color: #F08080;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.3rem 0.9rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.reject-btn:hover {
+  background-color: #e16868;
+}
