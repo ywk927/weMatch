@@ -1,5 +1,3 @@
-# 디자인 리드미
-
 ## 📄 페이지별 설명 (weMatch)
 
 ---
@@ -22,6 +20,9 @@
     
 
 📷
+![HomePage](./screenshots/HomePage.png)  
+![HomeMatch](./screenshots/HomeMatch.png)  
+![HomeMake](./screenshots/HomeMake.png)
 
 ---
 
@@ -39,6 +40,8 @@
     
 
 📷
+![Login](./screenshots/Login.png)  
+![Signup](./screenshots/Signup.png)
 
 ---
 
@@ -50,6 +53,8 @@
 - `ProfileEdit.png`: 닉네임, 포지션, 기술/언어, 자기소개 수정 가능
 
 📷
+![MyProfile](./screenshots/MyProfile.png)  
+![ProfileEdit](./screenshots/ProfileEdit.png)
 
 ---
 
@@ -61,6 +66,8 @@
 - `MyProjectList2.png`: 아직 생성한 프로젝트가 없을 경우 안내 메시지만 표시
 
 📷
+![MyProjectList](./screenshots/MyProjectList.png)  
+![MyProjectList2](./screenshots/MyProjectList2.png)
 
 ---
 
@@ -72,6 +79,8 @@
 - `ProjectPage2.png`: 필터를 통한 조건 검색 후의 상태
 
 📷
+![ProjectPage](./screenshots/ProjectPage.png)  
+![ProjectPage2](./screenshots/ProjectPage2.png)
 
 ---
 
@@ -85,6 +94,7 @@
     - 로그인 사용자에 따라 “신청” 또는 “신청자 관리” UI 분기
 
 📷
+![ProjectDetail](./screenshots/ProjectDetail.png)
 
 ---
 
@@ -99,6 +109,8 @@
 - `ProjectEdit.png`: 기존 데이터 불러와 수정
 
 📷
+![ProjectCreate](./screenshots/ProjectCreate.png)  
+![ProjectEdit](./screenshots/ProjectEdit.png)
 
 ---
 
@@ -109,3 +121,4 @@
 - `ProjectApply.png`: 지원자 리스트 + "+" (수락), "–" (거절) 버튼
 
 📷
+![ProjectApply](./screenshots/ProjectApply.png)
