@@ -199,3 +199,65 @@ node insertDummyData.js
 - 회원가입/프로필 수정 등 주요 API에 express-validator 적용
 - skills, position, image 등 필드별 유효성 체크
 - 잘못된 입력 시 400 에러와 상세 메시지 반환
+
+## 발생한 여러 문제들
+
+### CORS 에러 (Access-Control-Allow-Origin)
+발생 위치: frontend → backend API 호출 시
+
+오류 메시지:
+
+```
+Access to fetch at 'http://localhost:5000/api/projects' from origin 'http://localhost:3000' has been blocked by CORS policy
+```
+발생 원인: 백엔드 서버에 CORS 설정이 없었음
+
+해결 방법: express 서버에 cors 미들웨어 추가
+
+```
+const cors = require('cors')
+app.use(cors())
+```
+
+
+### 소셜 로그인 시 필수 회원가입 필드로 인한 문제 발생
+발생 위치: backend/models/User.js, auth.controller.js (GitHub/Google OAuth 로그인 시)
+
+오류 상황:
+
+소셜 로그인으로 유저 정보가 DB에 저장되지 않음
+
+또는 저장은 되었지만 클라이언트에서 사용자 정보가 누락되거나 로그인 후 에러 발생
+
+POST /api/auth/social 요청 이후 서버에서 ValidationError 혹은 필수값 누락 오류
+
+원인:
+
+사용자 스키마에 필수(required: true)로 설정한 필드가 많음, 프로젝트 팀원 매치니까 처음에는 스킬이나 어떤 개발자인지를 필수로 했었음
+
+소셜 로그인은 이메일과 프로필 이미지 외에 다른 정보를 제공하지 않음
+
+그래서 필수 필드 누락 → 사용자 생성 실패 또는 예상치 못한 동작 발생
+
+해결 방법:
+
+소셜 로그인 시 최소 필드만 우선 저장
+
+스키마에서 일부 필드의 required: true 제거 또는 소셜 로그인 전용 로직 분리
+
+소셜 로그인 후 추가 정보를 입력받는 페이지로 redirect하는 방식 고려(개선사항)
+
+예방 팁:
+
+사용자 등록 시점이 다르면 필수값 요구 조건도 달라야 한다
+
+일반 회원가입 vs 소셜 로그인 구분 필요
+
+Mongoose 스키마에서 조건부 required 적용 가능
+
+느낀 점:
+
+소셜 로그인은 편하지만 예상보다 제약이 많음
+
+처음부터 "일반 로그인"과 "소셜 로그인"의 플로우를 분리해서 설계하는 게 좋다
+
